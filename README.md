@@ -26,13 +26,13 @@ import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 ```
 
 ### Initialization
-To run the Maps Flutter Plugin you will need to configure the NB Maps Token at the beginning of your flutter app using `NextBillion.initNextBillion(YOUR_ACCESS_TOKEN)`. 
+To run the Maps Flutter Plugin you will need to configure the NB Maps Token at the beginning of your flutter app using `NextBillion.initNextBillion(YOUR_ACCESS_KEY)`. 
 ```
  class _MapsDemoState extends State<MapsDemo> {
   @override
   void initState() {
     super.initState();
-    NextBillion.initNextBillion(YOUR_ACCESS_TOKEN);
+    NextBillion.initNextBillion(YOUR_ACCESS_KEY);
   }
 }
 ```

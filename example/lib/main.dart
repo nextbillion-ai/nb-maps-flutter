@@ -51,7 +51,7 @@ final List<ExamplePage> _allPages = <ExamplePage>[
 ];
 
 class MapsDemo extends StatefulWidget {
-  static const String ACCESS_TOKEN = "YOUR ACCESS KEY";
+  static const String ACCESS_KEY = String.fromEnvironment("ACCESS_KEY");
 
   @override
   State<MapsDemo> createState() => _MapsDemoState();
@@ -61,7 +61,7 @@ class _MapsDemoState extends State<MapsDemo> {
   @override
   void initState() {
     super.initState();
-    NextBillion.initNextBillion(MapsDemo.ACCESS_TOKEN);
+    NextBillion.initNextBillion(MapsDemo.ACCESS_KEY);
   }
 
   /// Determine the android version of the phone and turn off HybridComposition
@@ -99,8 +99,8 @@ class _MapsDemoState extends State<MapsDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('NbMaps examples')),
-      body: MapsDemo.ACCESS_TOKEN.isEmpty ||
-              MapsDemo.ACCESS_TOKEN.contains("YOUR_TOKEN")
+      body: MapsDemo.ACCESS_KEY.isEmpty ||
+              MapsDemo.ACCESS_KEY.contains("YOUR_TOKEN")
           ? buildAccessTokenWarning()
           : ListView.separated(
               itemCount: _allPages.length,
