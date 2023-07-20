@@ -20,7 +20,7 @@ android {
     ndkVersion "20.1.5948944"
 
     defaultConfig {
-        minSdkVersion 20
+        minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
