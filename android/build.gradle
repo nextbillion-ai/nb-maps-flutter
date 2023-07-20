@@ -1,0 +1,42 @@
+group 'ai.nextbillion.maps_flutter'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.0'
+    }
+}
+
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+    ndkVersion "20.1.5948944"
+
+    defaultConfig {
+        minSdkVersion 20
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dependencies {
+        implementation 'ai.nextbillion:nb-maps-android:0.1.0'
+        implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
