@@ -1,7 +1,7 @@
 # Nextbillion Maps Flutter
 
 ## Instroduction
-![IMG_A7CEE8C23118-1的副本](https://github.com/nextbillion-ai/nb-maps-flutter/assets/100656364/69d82a03-6d4f-40dc-91d5-6b1f4d8569bc)
+![IMG_A7CEE8C23118-1_400x861](https://github.com/nextbillion-ai/nb-maps-flutter/assets/100656364/5e97b344-59cd-44ab-aed6-9f058ff1194c)
 
 
 ## Prerequisites
