@@ -6,7 +6,7 @@
 
 ## Prerequisites
 * Access Key
-* Android minSdkVersion 14+
+* Android minSdkVersion 16+
 * iOS 11+
 * Flutter 3.10+
 * Pod 1.11.3+
@@ -16,7 +16,7 @@
 Add the following dependency to your project pubspec.yaml file to use the NB Maps Flutter Plugin add the dependency to the pubspec.yaml:
 ```
 dependencies:
-  nb_maps_flutter: 0.1.0
+  nb_maps_flutter: version
 ```
 
 ### Import
