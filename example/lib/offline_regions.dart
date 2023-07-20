@@ -182,7 +182,7 @@ class _OfflineRegionsBodyState extends State<OfflineRegionBody> {
 
   void _updateListOfRegions() async {
     List<OfflineRegion> offlineRegions =
-        await getListOfRegions(accessToken: MapsDemo.ACCESS_TOKEN);
+        await getListOfRegions(accessToken: MapsDemo.ACCESS_KEY);
     List<OfflineRegionListItem> regionItems = [];
     for (var item in allRegions) {
       final offlineRegion = offlineRegions.firstWhereOrNull(
@@ -211,7 +211,7 @@ class _OfflineRegionsBodyState extends State<OfflineRegionBody> {
         metadata: {
           'name': regionNames[index],
         },
-        accessToken: MapsDemo.ACCESS_TOKEN,
+        accessToken: MapsDemo.ACCESS_KEY,
       );
       setState(() {
         _items.removeAt(index);
@@ -244,7 +244,7 @@ class _OfflineRegionsBodyState extends State<OfflineRegionBody> {
 
     await deleteOfflineRegion(
       item.downloadedId!,
-      accessToken: MapsDemo.ACCESS_TOKEN,
+      accessToken: MapsDemo.ACCESS_KEY,
     );
 
     setState(() {
