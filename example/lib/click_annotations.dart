@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
@@ -23,6 +22,7 @@ class ClickAnnotationBody extends StatefulWidget {
 
 class ClickAnnotationBodyState extends State<ClickAnnotationBody> {
   ClickAnnotationBodyState();
+
   static const LatLng center = const LatLng(-33.88, 151.16);
   bool overlapping = false;
 
