@@ -1,11 +1,9 @@
-
 import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
-import 'package:nb_maps_flutter_example/main.dart';
 
 import 'page.dart';
 

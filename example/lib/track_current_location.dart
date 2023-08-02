@@ -2,9 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
-class TrackCurrentLocation extends StatefulWidget {
-  static const String title = "Track Current Location";
+import 'page.dart';
 
+class TrackCurrentLocationPage extends ExamplePage {
+  TrackCurrentLocationPage()
+      : super(const Icon(Icons.place), 'TrackCurrentLocation');
+
+  @override
+  Widget build(BuildContext context) {
+    return TrackCurrentLocation();
+  }
+}
+
+class TrackCurrentLocation extends StatefulWidget {
   @override
   TrackCurrentLocationState createState() => TrackCurrentLocationState();
 }
@@ -12,7 +22,7 @@ class TrackCurrentLocation extends StatefulWidget {
 class TrackCurrentLocationState extends State<TrackCurrentLocation> {
   NextbillionMapController? controller;
 
-  String locationTrackImage = "assets/location_on.png";
+  String locationTrackImage = "assets/symbols/location_on.png";
 
   void _onMapCreated(NextbillionMapController controller) {
     this.controller = controller;
@@ -30,16 +40,13 @@ class TrackCurrentLocationState extends State<TrackCurrentLocation> {
 
   _onCameraTrackingChanged() {
     setState(() {
-      locationTrackImage = 'assets/location_off.png';
+      locationTrackImage = 'assets/symbols/location_off.png';
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(TrackCurrentLocation.title),
-      ),
       body: Stack(
         children: [
           NBMap(
@@ -68,9 +75,10 @@ class TrackCurrentLocationState extends State<TrackCurrentLocation> {
                       height: 28,
                     ),
                     onTap: () {
-                      controller?.updateMyLocationTrackingMode(MyLocationTrackingMode.Tracking);
+                      controller?.updateMyLocationTrackingMode(
+                          MyLocationTrackingMode.Tracking);
                       setState(() {
-                        locationTrackImage = 'assets/location_on.png';
+                        locationTrackImage = 'assets/symbols/location_on.png';
                       });
                     }),
               ),
@@ -80,6 +88,7 @@ class TrackCurrentLocationState extends State<TrackCurrentLocation> {
       ),
     );
   }
+
   @override
   void initState() {
     super.initState();
