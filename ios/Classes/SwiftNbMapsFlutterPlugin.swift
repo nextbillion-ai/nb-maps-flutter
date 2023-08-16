@@ -7,7 +7,7 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = NbMapFactory(withRegistrar: registrar)
         registrar.register(instance, withId: "plugins.flutter.io/nb_maps_flutter")
-
+        
         let channel = FlutterMethodChannel(
             name: "plugins.flutter.io/nb_maps_flutter",
             binaryMessenger: registrar.messenger()
@@ -26,13 +26,31 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                         NGLAccountManager.accessToken = token
                     }
                 }
-                      
+            case "nextbillion/get_access_key":
+                if let token = NGLAccountManager.accessToken {
+                    result(token)
+                }
+            case "nextbillion/set_access_key":
+                if let args = call.arguments as? [String: Any] {
+                    if let token = args["accessKey"] as? String? {
+                        NGLAccountManager.accessToken = token
+                    }
+                }
+            case "nextbillion/get_base_uri":
+                result(NGLAccountManager.apiBaseURL.absoluteString)
+            case "nextbillion/set_base_uri":
+                if let args = call.arguments as? [String: Any] {
+                    if let baseUri = args["baseUri"] as? String? {
+                        NGLAccountManager.setAPIBaseURL(URL(string: baseUri!)!)
+                    }
+                }
+                
             default:
                 result(FlutterMethodNotImplemented)
             }
-                                                
+            
         }
-
+        
         channel.setMethodCallHandler { methodCall, result in
             switch methodCall.method {
             case "setHttpHeaders":
@@ -110,13 +128,13 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
             }
         }
     }
-
+    
     private static func getTilesUrl() -> URL {
         guard var cachesUrl = FileManager.default.urls(
             for: .applicationSupportDirectory,
             in: .userDomainMask
         ).first,
-            let bundleId = Bundle.main
+              let bundleId = Bundle.main
             .object(forInfoDictionaryKey: kCFBundleIdentifierKey as String) as? String
         else {
             fatalError("Could not get map tiles directory")
@@ -126,7 +144,7 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
         cachesUrl.appendPathComponent("cache.db")
         return cachesUrl
     }
-
+    
     private static func installOfflineMapTiles(registrar: FlutterPluginRegistrar, tilesdb: String) {
         var tilesUrl = getTilesUrl()
         let bundlePath = getTilesDbPath(registrar: registrar, tilesdb: tilesdb)
@@ -151,7 +169,7 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
             NSLog("Error copying bundled tiles: \(error)")
         }
     }
-
+    
     private static func getTilesDbPath(registrar: FlutterPluginRegistrar,
                                        tilesdb: String) -> String?
     {
