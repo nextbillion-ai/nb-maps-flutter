@@ -40,3 +40,6 @@
   * Circle Layer
   * Symbol Layer
   * Raster Layer
+
+## v0.1.4, August 16, 2023
+* Update iOS native framework version from 1.0.1 to 1.0.2
