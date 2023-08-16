@@ -17,7 +17,7 @@ class NbMapBuilder implements NextbillionMapOptionsSink {
   private boolean dragEnabled = true;
   private int myLocationTrackingMode = 0;
   private int myLocationRenderMode = 0;
-  private String styleString = "https://api.nextbillion.io/maps/streets/style.json";
+  private String styleString = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
   private LatLngBounds bounds = null;
 
   NextbillionMapController build(
