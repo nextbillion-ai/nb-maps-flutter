@@ -48,9 +48,9 @@ class MapUiBodyState extends State<MapUiBody> {
   // Style string can a reference to a local or remote resources.
   // On Android the raw JSON can also be passed via a styleString, on iOS this is not supported.
   List<String> _styleStrings = [
-    "https://api.nextbillion.io/maps/streets/style.json",
-    "https://api.nextbillion.io/maps/streets/style.json",
-    "https://api.nextbillion.io/maps/streets/style.json"
+    NbMapStyles.NBMAP_STREETS,
+    NbMapStyles.SATELLITE,
+    NbMapStyles.DARK
   ];
   List<String> _styleStringLabels = [
     "NBMAP_STREETS",

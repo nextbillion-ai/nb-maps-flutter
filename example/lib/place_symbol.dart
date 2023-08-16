@@ -289,6 +289,7 @@ class PlaceSymbolBodyState extends State<PlaceSymbolBody> {
             child: NBMap(
               onMapCreated: _onMapCreated,
               onStyleLoadedCallback: _onStyleLoaded,
+              styleString: "https://api.nextbillion.io/maps/streets/style.json",
               initialCameraPosition: const CameraPosition(
                 target: LatLng(-33.852, 151.211),
                 zoom: 11.0,

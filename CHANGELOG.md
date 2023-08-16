@@ -1,3 +1,8 @@
+## v0.1.4, Aug 16, 2023
+* Update iOS NB Maps framework to 1.0.2
+* Support to change the base url of map style url
+* Update the default map style
+
 ## v0.1.0, July 20, 2023
 * Display MapView
   * Camera position
