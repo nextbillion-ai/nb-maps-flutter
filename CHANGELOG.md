@@ -1,3 +1,7 @@
+## v0.1.5, Aug 17, 2023
+* Update Android NB Maps SDK to 1.0.0
+* Update the default map style
+
 ## v0.1.4, Aug 16, 2023
 * Update iOS NB Maps framework to 1.0.2
 * Support to change the base url of map style url
