@@ -74,6 +74,7 @@ Add the following to the Runner/Info.plist to explain why you need access to the
 
 ### Observe and Tracking User Location
 * add the callback onUserLocationUpdated(UserLocation location)
+* animate camera to user location within `onStyleLoadedCallback`
 ```
 void _onMapCreated(NextbillionMapController controller) {
     this.controller = controller;
