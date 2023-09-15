@@ -72,11 +72,26 @@ Add the following to the Runner/Info.plist to explain why you need access to the
 * myLocationEnabled: true
 * myLocationTrackingMode: MyLocationTrackingMode.Tracking
 
-### Observe User Location Updating
+### Observe and Tracking User Location
 * add the callback onUserLocationUpdated(UserLocation location)
 ```
+void _onMapCreated(NextbillionMapController controller) {
+    this.controller = controller;
+  }
+
+_onUserLocationUpdate(UserLocation location) {
+    currentLocation = location;
+  }
+
+_onStyleLoadedCallback() {
+    if (currentLocation != null) {
+      controller?.animateCamera(CameraUpdate.newLatLngZoom(currentLocation!.position, 14), duration: Duration(milliseconds: 400));
+    }
+  }
+
 NBMap(
      onMapCreated: _onMapCreated,
+     onStyleLoadedCallback: _onStyleLoadedCallback,
      initialCameraPosition: const CameraPosition(
             target: LatLng(0, 0),
             zoom: 14.0,
@@ -84,7 +99,7 @@ NBMap(
      trackCameraPosition: true,
      myLocationEnabled: true,
      myLocationTrackingMode: MyLocationTrackingMode.Tracking,
-     onUserLocationUpdated: (userLocation) {},
+     onUserLocationUpdated: _onUserLocationUpdate,
 )
 ```
 
