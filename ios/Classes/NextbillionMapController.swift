@@ -1132,6 +1132,31 @@ class NextbillionMapController: NSObject, FlutterPlatformView, NGLMapViewDelegat
      *  NGLMapViewDelegate
      */
     func mapView(_ mapView: NGLMapView, didFinishLoading _: NGLStyle) {
+//        isMapReady = true
+//        updateMyLocationEnabled()
+//
+//        if let initialTilt = initialTilt {
+//            let camera = mapView.camera
+//            camera.pitch = initialTilt
+//            mapView.setCamera(camera, animated: false)
+//        }
+//
+//        addedShapesByLayer.removeAll()
+//        interactiveFeatureLayerIds.removeAll()
+//
+//        mapReadyResult?(nil)
+//
+//        // On first launch we only call map#onStyleLoaded if map#waitForMap has already been called
+//        if !isFirstStyleLoad || mapReadyResult != nil {
+//            isFirstStyleLoad = false
+//
+//            if let channel = channel {
+//                channel.invokeMethod("map#onStyleLoaded", arguments: nil)
+//            }
+//        }
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: NGLMapView) {
         isMapReady = true
         updateMyLocationEnabled()
 

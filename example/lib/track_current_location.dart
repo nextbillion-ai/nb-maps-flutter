@@ -29,9 +29,7 @@ class TrackCurrentLocationState extends State<TrackCurrentLocation> {
   }
 
   _onStyleLoadedCallback() async {
-    Future.delayed(const Duration(milliseconds: 80), () {
-      controller?.updateMyLocationTrackingMode(MyLocationTrackingMode.Tracking);
-    });
+    controller?.updateMyLocationTrackingMode(MyLocationTrackingMode.Tracking);
   }
 
   _onUserLocationUpdate(UserLocation location) {
