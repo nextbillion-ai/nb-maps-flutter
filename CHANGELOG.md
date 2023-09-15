@@ -1,3 +1,7 @@
+## v0.1.6, Sept 15, 2023
+* Fix the animateCamera issue
+  * When calling controller.animateCamera() within onStyleLoadedCallback 
+
 ## v0.1.5, Aug 17, 2023
 * Update Android NB Maps SDK to 1.0.0
 * Update the default map style
