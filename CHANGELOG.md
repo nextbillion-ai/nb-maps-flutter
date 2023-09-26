@@ -1,3 +1,8 @@
+## v0.2.0, Sept 26, 2023
+* Update iOS NB Maps framework to 1.0.3
+* Update Android NB Maps SDK to 1.0.2
+* Support to fit camera into bounds with multi points
+
 ## v0.1.6, Sept 15, 2023
 * Fix the animateCamera issue
   * When calling controller.animateCamera() within onStyleLoadedCallback 
