@@ -42,6 +42,6 @@ abstract class NbMapUtils {
         if (baseUri == null || baseUri.isEmpty()) {
             throw new NbmapConfigurationException("\n BaseUri should not be empty");
         }
-        Nextbillion.getBaseUri(baseUri);
+        Nextbillion.setBaseUri(baseUri);
     }
 }

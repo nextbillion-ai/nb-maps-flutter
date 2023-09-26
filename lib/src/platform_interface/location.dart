@@ -70,10 +70,48 @@ class LatLngBounds {
       : assert(southwest.latitude <= northeast.latitude);
 
   /// The southwest corner of the rectangle.
-  final LatLng southwest;
+  LatLng southwest;
 
   /// The northeast corner of the rectangle.
-  final LatLng northeast;
+  LatLng northeast;
+
+  factory LatLngBounds.fromMultiLatLng(List<LatLng> multiLatLng) {
+    double? minLat;
+    double? maxLat;
+    double? minLon;
+    double? maxLon;
+
+    for (LatLng item in multiLatLng) {
+      double latitude = item.latitude;
+      double longitude = item.longitude;
+
+      if (minLat == null) {
+        minLat = latitude;
+      } else if (minLat > latitude) {
+        minLat = latitude;
+      }
+
+      if (maxLat == null) {
+        maxLat = latitude;
+      } else if (maxLat < latitude) {
+        maxLat = latitude;
+      }
+
+      if (minLon == null) {
+        minLon = longitude;
+      } else if (minLon > longitude) {
+        minLon = longitude;
+      }
+
+      if (maxLon == null) {
+        maxLon = longitude;
+      } else if (maxLon < longitude) {
+        maxLon = longitude;
+      }
+    }
+
+    return LatLngBounds(southwest: LatLng(minLat!, minLon!), northeast: LatLng(maxLat!, maxLon!));
+  }
 
   dynamic toList() {
     return <dynamic>[southwest.toJson(), northeast.toJson()];
