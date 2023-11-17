@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 import 'package:nb_maps_flutter_example/track_current_location.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'animate_camera.dart';
 import 'annotation_order_maps.dart';
@@ -82,13 +82,11 @@ class _MapsDemoState extends State<MapsDemo> {
   }
 
   void _pushPage(BuildContext context, ExamplePage page) async {
-    if (!kIsWeb) {
-      final location = Location();
-      final hasPermissions = await location.hasPermission();
-      if (hasPermissions != PermissionStatus.granted) {
-        await location.requestPermission();
-      }
+    var status = await Permission.location.status;
+    if(status.isDenied) {
+      await [Permission.location].request();
     }
+
     Navigator.of(context).push(MaterialPageRoute<void>(
         builder: (_) => Scaffold(
               appBar: AppBar(title: Text(page.title)),
