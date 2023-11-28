@@ -1,7 +1,7 @@
 # Nextbillion Maps Flutter
 
 ## Instroduction
-![WechatIMG435](https://github.com/nextbillion-ai/nb-maps-flutter/assets/100656364/f6f59804-d96d-46f8-b324-c383b8f55740)
+![Nextbillion_Maps_IMG](https://github.com/nextbillion-ai/nb-maps-flutter/assets/100656364/5b8cedb6-a839-45b4-bc04-a760ba562329)
 
 
 ## Prerequisites
