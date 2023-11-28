@@ -1,3 +1,6 @@
+## v0.3.0, Nov 8, 2023
+* Update Android NB Maps SDK to 1.0.3
+
 ## v0.2.0, Sept 26, 2023
 * Update iOS NB Maps framework to 1.0.3
 * Update Android NB Maps SDK to 1.0.2
