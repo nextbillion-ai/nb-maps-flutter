@@ -1,3 +1,6 @@
+## v0.3.1, Apr 24, 2024
+* Throw an exception when calling methods of NextbillionMapController after the controller is disposed
+
 ## v0.3.0, Nov 8, 2023
 * Update Android NB Maps SDK to 1.0.3
 
