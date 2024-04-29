@@ -44,4 +44,15 @@ abstract class NbMapUtils {
         }
         Nextbillion.setBaseUri(baseUri);
     }
+
+    static void setApiKeyHeaderName(String apiKeyHeaderName) {
+        if (apiKeyHeaderName == null || apiKeyHeaderName.isEmpty()) {
+            throw new NbmapConfigurationException("\n Api Key Header Name should not be empty");
+        }
+        Nextbillion.setApiKeyHeaderName(apiKeyHeaderName);
+    }
+
+    static String getApiKeyHeaderName() {
+        return Nextbillion.getApiKeyHeaderName();
+    }
 }

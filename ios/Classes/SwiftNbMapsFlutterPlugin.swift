@@ -44,7 +44,14 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                         NGLAccountManager.setAPIBaseURL(URL(string: baseUri!)!)
                     }
                 }
-                
+            case "nextbillion/set_key_header_name":
+                if let args = call.arguments as? [String: Any] {
+                    if let apiKeyHeaderName = args["apiKeyHeaderName"] as? String? {
+                        NGLAccountManager.apiKeyHeaderName = apiKeyHeaderName
+                    }
+                }
+            case "nextbillion/get_key_header_name":
+                result(NGLAccountManager.apiKeyHeaderName)
             default:
                 result(FlutterMethodNotImplemented)
             }
