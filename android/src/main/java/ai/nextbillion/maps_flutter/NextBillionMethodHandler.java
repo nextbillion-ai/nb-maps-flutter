@@ -44,6 +44,14 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
                 String baseUriToSet = call.argument("baseUri");
                 NbMapUtils.setBaseUri(baseUriToSet);
                 break;
+            case "nextbillion/set_key_header_name":
+                String apiKeyHeaderName = call.argument("apiKeyHeaderName");
+                NbMapUtils.setApiKeyHeaderName(apiKeyHeaderName);
+                break;
+            case "nextbillion/get_key_header_name":
+                String keyHeaderName = NbMapUtils.getApiKeyHeaderName();
+                result.success(keyHeaderName);
+                break;
         }
 
     }
