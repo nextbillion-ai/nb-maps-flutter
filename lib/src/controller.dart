@@ -276,7 +276,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// Note: this currently always returns immediately with a value of null on iOS
   Future<bool?> animateCamera(CameraUpdate cameraUpdate, {Duration? duration}) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.animateCamera(cameraUpdate, duration: duration);
+    return await _nbMapsGlPlatform.animateCamera(cameraUpdate, duration: duration);
   }
 
   /// Instantaneously re-position the camera.
@@ -288,7 +288,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// Note: this currently always returns immediately with a value of null on iOS
   Future<bool?> moveCamera(CameraUpdate cameraUpdate) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.moveCamera(cameraUpdate);
+    return await _nbMapsGlPlatform.moveCamera(cameraUpdate);
   }
 
   /// Adds a new geojson source
@@ -621,7 +621,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<void> updateMyLocationTrackingMode(MyLocationTrackingMode myLocationTrackingMode) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.updateMyLocationTrackingMode(myLocationTrackingMode);
+    return await _nbMapsGlPlatform.updateMyLocationTrackingMode(myLocationTrackingMode);
   }
 
   /// Updates the language of the map labels to match the device's language.
@@ -630,7 +630,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<void> matchMapLanguageWithDeviceDefault() async {
     _disposeGuard();
-    return _nbMapsGlPlatform.matchMapLanguageWithDeviceDefault();
+    return await _nbMapsGlPlatform.matchMapLanguageWithDeviceDefault();
   }
 
   /// Updates the distance from the edges of the map view’s frame to the edges
@@ -646,7 +646,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<void> updateContentInsets(EdgeInsets insets, [bool animated = false]) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.updateContentInsets(insets, animated);
+    return await _nbMapsGlPlatform.updateContentInsets(insets, animated);
   }
 
   /// Updates the language of the map labels to match the specified language.
@@ -656,7 +656,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<void> setMapLanguage(String language) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.setMapLanguage(language);
+    return await _nbMapsGlPlatform.setMapLanguage(language);
   }
 
   /// Enables or disables the collection of anonymized telemetry data.
@@ -665,7 +665,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<void> setTelemetryEnabled(bool enabled) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.setTelemetryEnabled(enabled);
+    return await _nbMapsGlPlatform.setTelemetryEnabled(enabled);
   }
 
   /// Retrieves whether collection of anonymized telemetry data is enabled.
@@ -674,7 +674,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   Future<bool> getTelemetryEnabled() async {
     _disposeGuard();
-    return _nbMapsGlPlatform.getTelemetryEnabled();
+    return await _nbMapsGlPlatform.getTelemetryEnabled();
   }
 
   /// Adds a symbol to the map, configured using the specified custom [options].
@@ -936,7 +936,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeCircle(Circle circle) async {
     _disposeGuard();
-    circleManager!.remove(circle);
+    await circleManager!.remove(circle);
 
     notifyListeners();
   }
@@ -962,7 +962,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes once listeners have been notified.
   Future<void> clearCircles() async {
     _disposeGuard();
-    circleManager!.clear();
+    await circleManager!.clear();
 
     notifyListeners();
   }
@@ -1060,18 +1060,18 @@ class NextbillionMapController extends ChangeNotifier {
   /// Query rendered features at a point in screen cooridnates
   Future<List> queryRenderedFeatures(Point<double> point, List<String> layerIds, List<Object>? filter) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.queryRenderedFeatures(point, layerIds, filter);
+    return await _nbMapsGlPlatform.queryRenderedFeatures(point, layerIds, filter);
   }
 
   /// Query rendered features in a Rect in screen coordinates
   Future<List> queryRenderedFeaturesInRect(Rect rect, List<String> layerIds, String? filter) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.queryRenderedFeaturesInRect(rect, layerIds, filter);
+    return await _nbMapsGlPlatform.queryRenderedFeaturesInRect(rect, layerIds, filter);
   }
 
   Future invalidateAmbientCache() async {
     _disposeGuard();
-    return _nbMapsGlPlatform.invalidateAmbientCache();
+    return await _nbMapsGlPlatform.invalidateAmbientCache();
   }
 
   /// Get last my location
@@ -1079,19 +1079,19 @@ class NextbillionMapController extends ChangeNotifier {
   /// Return last latlng, nullable
   Future<LatLng?> requestMyLocationLatLng() async {
     _disposeGuard();
-    return _nbMapsGlPlatform.requestMyLocationLatLng();
+    return await _nbMapsGlPlatform.requestMyLocationLatLng();
   }
 
   /// This method returns the boundaries of the region currently displayed in the map.
   Future<LatLngBounds> getVisibleRegion() async {
     _disposeGuard();
-    return _nbMapsGlPlatform.getVisibleRegion();
+    return await _nbMapsGlPlatform.getVisibleRegion();
   }
 
   /// Update map style for MapView
   Future<void> setStyleString(String styleString) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.setStyleString(styleString);
+    return await _nbMapsGlPlatform.setStyleString(styleString);
   }
 
   /// Adds an image to the style currently displayed in the map, so that it can later be referred to by the provided name.
@@ -1131,7 +1131,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// ```
   Future<void> addImage(String name, Uint8List bytes, [bool sdf = false]) {
     _disposeGuard();
-    return _nbMapsGlPlatform.addImage(name, bytes, sdf);
+    return await _nbMapsGlPlatform.addImage(name, bytes, sdf);
   }
 
   Future<void> setSymbolIconAllowOverlap(bool enable) async {
@@ -1155,68 +1155,68 @@ class NextbillionMapController extends ChangeNotifier {
   }
 
   /// Adds an image source to the style currently displayed in the map, so that it can later be referred to by the provided id.
-  Future<void> addImageSource(String imageSourceId, Uint8List bytes, LatLngQuad coordinates) {
+  Future<void> addImageSource(String imageSourceId, Uint8List bytes, LatLngQuad coordinates) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.addImageSource(imageSourceId, bytes, coordinates);
+    return await _nbMapsGlPlatform.addImageSource(imageSourceId, bytes, coordinates);
   }
 
   /// Update an image source to the style currently displayed in the map, so that it can later be referred to by the provided id.
-  Future<void> updateImageSource(String imageSourceId, Uint8List? bytes, LatLngQuad? coordinates) {
+  Future<void> updateImageSource(String imageSourceId, Uint8List? bytes, LatLngQuad? coordinates) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.updateImageSource(imageSourceId, bytes, coordinates);
+    return await _nbMapsGlPlatform.updateImageSource(imageSourceId, bytes, coordinates);
   }
 
   /// Removes previously added image source by id
   @Deprecated("This method was renamed to removeSource")
-  Future<void> removeImageSource(String imageSourceId) {
+  Future<void> removeImageSource(String imageSourceId) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.removeSource(imageSourceId);
+    return await _nbMapsGlPlatform.removeSource(imageSourceId);
   }
 
   /// Removes previously added source by id
-  Future<void> removeSource(String sourceId) {
+  Future<void> removeSource(String sourceId) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.removeSource(sourceId);
+    return await _nbMapsGlPlatform.removeSource(sourceId);
   }
 
   /// Adds a NbMaps image layer to the map's style at render time.
-  Future<void> addImageLayer(String layerId, String imageSourceId, {double? minzoom, double? maxzoom}) {
+  Future<void> addImageLayer(String layerId, String imageSourceId, {double? minzoom, double? maxzoom}) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.addLayer(layerId, imageSourceId, minzoom, maxzoom);
+    return await _nbMapsGlPlatform.addLayer(layerId, imageSourceId, minzoom, maxzoom);
   }
 
   /// Adds a NbMaps image layer below the layer provided with belowLayerId to the map's style at render time.
   Future<void> addImageLayerBelow(String layerId, String sourceId, String imageSourceId,
-      {double? minzoom, double? maxzoom}) {
+      {double? minzoom, double? maxzoom}) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
+    return await _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
   }
 
   /// Adds a NbMaps image layer below the layer provided with belowLayerId to the map's style at render time. Only works for image sources!
   @Deprecated("This method was renamed to addImageLayerBelow for clarity.")
   Future<void> addLayerBelow(String layerId, String sourceId, String imageSourceId,
-      {double? minzoom, double? maxzoom}) {
+      {double? minzoom, double? maxzoom}) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
+    return await _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
   }
 
   /// Removes a nbmaps style layer
-  Future<void> removeLayer(String layerId) {
+  Future<void> removeLayer(String layerId) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.removeLayer(layerId);
+    return await _nbMapsGlPlatform.removeLayer(layerId);
   }
 
-  Future<void> setFilter(String layerId, dynamic filter) {
+  Future<void> setFilter(String layerId, dynamic filter) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.setFilter(layerId, filter);
+    return await _nbMapsGlPlatform.setFilter(layerId, filter);
   }
 
   /// Sets the visibility by specifying [isVisible] of the layer with
   /// the specified id [layerId].
   /// Returns silently if [layerId] does not exist.
-  Future<void> setVisibility(String layerId, bool isVisible) {
+  Future<void> setVisibility(String layerId, bool isVisible) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.setVisibility(layerId, isVisible);
+    return await _nbMapsGlPlatform.setVisibility(layerId, isVisible);
   }
 
   /// Returns the point on the screen that corresponds to a geographical coordinate ([latLng]). The screen location is in screen pixels (not display pixels) relative to the top left of the map (not of the whole screen)
@@ -1227,31 +1227,31 @@ class NextbillionMapController extends ChangeNotifier {
   /// Returns null if [latLng] is not currently visible on the map.
   Future<Point> toScreenLocation(LatLng latLng) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.toScreenLocation(latLng);
+    return await _nbMapsGlPlatform.toScreenLocation(latLng);
   }
 
   Future<List<Point>> toScreenLocationBatch(Iterable<LatLng> latLngs) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.toScreenLocationBatch(latLngs);
+    return await _nbMapsGlPlatform.toScreenLocationBatch(latLngs);
   }
 
   /// Returns the geographic location (as [LatLng]) that corresponds to a point on the screen. The screen location is specified in screen pixels (not display pixels) relative to the top left of the map (not the top left of the whole screen).
   Future<LatLng> toLatLng(Point screenLocation) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.toLatLng(screenLocation);
+    return await _nbMapsGlPlatform.toLatLng(screenLocation);
   }
 
   /// Returns the distance spanned by one pixel at the specified [latitude] and current zoom level.
   /// The distance between pixels decreases as the latitude approaches the poles. This relationship parallels the relationship between longitudinal coordinates at different latitudes.
   Future<double> getMetersPerPixelAtLatitude(double latitude) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.getMetersPerPixelAtLatitude(latitude);
+    return await _nbMapsGlPlatform.getMetersPerPixelAtLatitude(latitude);
   }
 
   /// Add a new source to the map
   Future<void> addSource(String sourceid, SourceProperties properties) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.addSource(sourceid, properties);
+    return await _nbMapsGlPlatform.addSource(sourceid, properties);
   }
 
   /// Add a layer to the map with the given properties
@@ -1344,12 +1344,12 @@ class NextbillionMapController extends ChangeNotifier {
   /// If you want base64 value, you must set writeToDisk option to False
   Future<String> takeSnapshot(SnapshotOptions snapshotOptions) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.takeSnapshot(snapshotOptions);
+    return await _nbMapsGlPlatform.takeSnapshot(snapshotOptions);
   }
 
   Future<String> findBelowLayerId(List<String> belowAt) async {
     _disposeGuard();
-    return _nbMapsGlPlatform.findBelowLayerId(belowAt);
+    return await _nbMapsGlPlatform.findBelowLayerId(belowAt);
   }
 
   void _disposeGuard() {
