@@ -26,6 +26,7 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                         NGLAccountManager.accessToken = token
                     }
                 }
+                result(nil)
             case "nextbillion/get_access_key":
                 if let token = NGLAccountManager.accessToken {
                     result(token)
@@ -36,6 +37,7 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                         NGLAccountManager.accessToken = token
                     }
                 }
+                result(nil)
             case "nextbillion/get_base_uri":
                 result(NGLAccountManager.apiBaseURL.absoluteString)
             case "nextbillion/set_base_uri":
@@ -44,12 +46,14 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                         NGLAccountManager.setAPIBaseURL(URL(string: baseUri!)!)
                     }
                 }
+                result(nil)
             case "nextbillion/set_key_header_name":
                 if let args = call.arguments as? [String: Any] {
                     if let apiKeyHeaderName = args["apiKeyHeaderName"] as? String? {
                         NGLAccountManager.apiKeyHeaderName = apiKeyHeaderName
                     }
                 }
+                result(nil)
             case "nextbillion/get_key_header_name":
                 result(NGLAccountManager.apiKeyHeaderName)
             default:

@@ -27,6 +27,7 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
             case "nextbillion/init_nextbillion":
                 String accessToken = call.argument("accessKey");
                 NbMapUtils.getNextbillion(context, accessToken);
+                result.success(null);
                 break;
             case "nextbillion/get_access_key":
                 String accessTokenResult = NbMapUtils.getAccessKey();
@@ -35,6 +36,7 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
             case "nextbillion/set_access_key":
                 String accessTokenToSet = call.argument("accessKey");
                 NbMapUtils.setAccessKey(accessTokenToSet);
+                result.success(null);
                 break;
             case "nextbillion/get_base_uri":
                 String baseUri = NbMapUtils.getBaseUri();
@@ -43,15 +45,19 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
             case "nextbillion/set_base_uri":
                 String baseUriToSet = call.argument("baseUri");
                 NbMapUtils.setBaseUri(baseUriToSet);
+                result.success(null);
                 break;
             case "nextbillion/set_key_header_name":
                 String apiKeyHeaderName = call.argument("apiKeyHeaderName");
                 NbMapUtils.setApiKeyHeaderName(apiKeyHeaderName);
+                result.success(null);
                 break;
             case "nextbillion/get_key_header_name":
                 String keyHeaderName = NbMapUtils.getApiKeyHeaderName();
                 result.success(keyHeaderName);
                 break;
+            default:
+                result.notImplemented();
         }
 
     }
