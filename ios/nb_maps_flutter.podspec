@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'nb_maps_flutter'
-  s.version          = '0.3.2'
+  s.version          = '0.3.3'
   s.summary          = 'A new Flutter plugin.'
   s.description      = <<-DESC
 A new Flutter plugin.
