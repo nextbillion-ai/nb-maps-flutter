@@ -1,5 +1,6 @@
-## v0.3.3, May 7, 2024
+## v0.3.4, May 7, 2024
 * Add await for some methods in controller
+* Support obtaining the disposed status from the controller
 
 ## v0.3.2, Apr 29, 2024
 * Update Android NB Maps SDK to 1.1.0

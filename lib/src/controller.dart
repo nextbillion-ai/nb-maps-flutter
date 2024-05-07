@@ -166,6 +166,8 @@ class NextbillionMapController extends ChangeNotifier {
 
   bool _disposed = false;
 
+  bool get disposed => _disposed;
+
   FillManager? fillManager;
   LineManager? lineManager;
   CircleManager? circleManager;
