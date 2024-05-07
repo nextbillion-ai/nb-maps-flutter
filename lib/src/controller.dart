@@ -1129,7 +1129,7 @@ class NextbillionMapController extends ChangeNotifier {
   ///  );
   /// }
   /// ```
-  Future<void> addImage(String name, Uint8List bytes, [bool sdf = false]) {
+  Future<void> addImage(String name, Uint8List bytes, [bool sdf = false]) async {
     _disposeGuard();
     return await _nbMapsGlPlatform.addImage(name, bytes, sdf);
   }
