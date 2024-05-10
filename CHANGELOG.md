@@ -1,6 +1,6 @@
 ## v0.3.5, May 7, 2024
 * Add result for NextBillion methods
-* 
+
 ## v0.3.4, May 7, 2024
 * Add await for some methods in controller
 * Support obtaining the disposed status from the controller
