@@ -1,3 +1,6 @@
+## v0.4.0, May 29, 2024
+* Remove state check exception when calling methods of NextbillionMapController after the controller is disposed
+
 ## v0.3.5, May 7, 2024
 * Add result for NextBillion methods
 
