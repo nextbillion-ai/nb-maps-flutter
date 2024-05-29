@@ -66,6 +66,9 @@ class CustomMarkerState extends State<CustomMarker> {
     }
 
     _mapController.toScreenLocationBatch(coordinates).then((points) {
+      if(points == null){
+        return;
+      }
       _markerStates.asMap().forEach((i, value) {
         _markerStates[i].updatePosition(points[i]);
       });
@@ -108,6 +111,9 @@ class CustomMarkerState extends State<CustomMarker> {
             }
 
             _mapController.toScreenLocationBatch(param).then((value) {
+              if(value == null) {
+                return;
+              }
               for (var i = 0; i < randomMarkerNum; i++) {
                 var point =
                     Point<double>(value[i].x as double, value[i].y as double);
@@ -143,6 +149,7 @@ class CustomMarkerState extends State<CustomMarker> {
         for (var j = 0; j < batch; j++) {
           var p = _mapController
               .toScreenLocation(LatLng(j.toDouble() % 80, j.toDouble() % 300));
+
           list.add(p);
         }
         Future.wait(list);

@@ -219,8 +219,10 @@ class LineBodyState extends State<LineBody> {
                               : () async {
                                   var latLngs = await controller!
                                       .getLineLatLngs(_selectedLine!);
-                                  for (var latLng in latLngs) {
-                                    print(latLng.toString());
+                                  if(latLngs != null) {
+                                    for (var latLng in latLngs) {
+                                      print(latLng.toString());
+                                    }
                                   }
                                 },
                         ),
