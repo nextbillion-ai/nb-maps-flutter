@@ -60,9 +60,9 @@ class BatchAddBody extends StatefulWidget {
 class BatchAddBodyState extends State<BatchAddBody> {
   BatchAddBodyState();
   List<Fill> _fills = [];
-  List<Circle> _circles = [];
-  List<Line> _lines = [];
-  List<Symbol> _symbols = [];
+  List<Circle>? _circles = [];
+  List<Line>? _lines = [];
+  List<Symbol>? _symbols = [];
 
   static final LatLng center = const LatLng(-33.86711, 151.1947171);
 
@@ -124,13 +124,19 @@ class BatchAddBodyState extends State<BatchAddBody> {
 
   void _remove() {
     controller.removeFills(_fills);
-    controller.removeLines(_lines);
-    controller.removeCircles(_circles);
-    controller.removeSymbols(_symbols);
+    if(_lines != null){
+      controller.removeLines(_lines!);
+    }
+    if(_circles != null){
+      controller.removeCircles(_circles!);
+    }
+    if(_symbols != null){
+      controller.removeSymbols(_symbols!);
+    }
     _fills.clear();
-    _lines.clear();
-    _circles.clear();
-    _symbols.clear();
+    _lines?.clear();
+    _circles?.clear();
+    _symbols?.clear();
   }
 
   @override

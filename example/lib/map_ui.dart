@@ -287,7 +287,7 @@ class MapUiBodyState extends State<MapUiBody> {
         var result = await mapController!.getVisibleRegion();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-              "SW: ${result.southwest.toString()} NE: ${result.northeast.toString()}"),
+              "SW: ${result?.southwest.toString()} NE: ${result?.northeast.toString()}"),
         ));
       },
     );
@@ -312,7 +312,7 @@ class MapUiBodyState extends State<MapUiBody> {
               (ll) => ll.map((l) => LatLng(l[1], l[0])).toList().cast<LatLng>())
           .toList()
           .cast<List<LatLng>>();
-      Fill fill = await mapController!.addFill(FillOptions(
+      Fill? fill = await mapController!.addFill(FillOptions(
         geometry: geometry,
         fillColor: "#FF0000",
         fillOutlineColor: "#FF0000",
@@ -348,6 +348,9 @@ class MapUiBodyState extends State<MapUiBody> {
         print("Filter $_featureQueryFilter");
         List features = await mapController!
             .queryRenderedFeatures(point, ["landuse"], _featureQueryFilter);
+        if(features == null){
+          return;
+        }
         print('# features: ${features.length}');
         _clearFill();
         if (features.isEmpty && _featureQueryFilter != null) {
@@ -360,11 +363,13 @@ class MapUiBodyState extends State<MapUiBody> {
       onMapLongClick: (point, latLng) async {
         print(
             "Map long press: ${point.x},${point.y}   ${latLng.latitude}/${latLng.longitude}");
-        Point convertedPoint = await mapController!.toScreenLocation(latLng);
-        LatLng convertedLatLng = await mapController!.toLatLng(point);
-        print(
-            "Map long press converted: ${convertedPoint.x},${convertedPoint.y}   ${convertedLatLng.latitude}/${convertedLatLng.longitude}");
-        double metersPerPixel =
+        Point? convertedPoint = await mapController!.toScreenLocation(latLng);
+        if(convertedPoint == null){
+          return;
+        }
+        LatLng? convertedLatLng = await mapController!.toLatLng(point);
+
+        double? metersPerPixel =
             await mapController!.getMetersPerPixelAtLatitude(latLng.latitude);
 
         print(

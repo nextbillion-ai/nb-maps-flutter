@@ -246,7 +246,9 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes after listeners have been notified.
   Future<void> _updateMapOptions(Map<String, dynamic> optionsUpdate) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     _cameraPosition = await _nbMapsGlPlatform.updateMapOptions(optionsUpdate);
     notifyListeners();
   }
@@ -258,13 +260,17 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// To force resize map (without any checks) have a look at forceResizeWebMap()
   void resizeWebMap() {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     _nbMapsGlPlatform.resizeWebMap();
   }
 
   /// Triggers a hard map resize event on web and does not check if it is required or not.
   void forceResizeWebMap() {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     _nbMapsGlPlatform.forceResizeWebMap();
   }
 
@@ -277,7 +283,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// It returns true if the camera was successfully moved and false if the movement was canceled.
   /// Note: this currently always returns immediately with a value of null on iOS
   Future<bool?> animateCamera(CameraUpdate cameraUpdate, {Duration? duration}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return false;
+    }
     return await _nbMapsGlPlatform.animateCamera(cameraUpdate, duration: duration);
   }
 
@@ -289,7 +297,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// It returns true if the camera was successfully moved and false if the movement was canceled.
   /// Note: this currently always returns immediately with a value of null on iOS
   Future<bool?> moveCamera(CameraUpdate cameraUpdate) async {
-    _disposeGuard();
+    if(_disposed) {
+      return false;
+    }
     return await _nbMapsGlPlatform.moveCamera(cameraUpdate);
   }
 
@@ -302,7 +312,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// platform side.
   ///
   Future<void> addGeoJsonSource(String sourceId, Map<String, dynamic> geojson, {String? promoteId}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addGeoJsonSource(sourceId, geojson, promoteId: promoteId);
   }
 
@@ -318,7 +330,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> setGeoJsonSource(String sourceId, Map<String, dynamic> geojson) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.setGeoJsonSource(sourceId, geojson);
   }
 
@@ -334,7 +348,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> setGeoJsonFeature(String sourceId, Map<String, dynamic> geojsonFeature) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.setFeatureForGeoJsonSource(sourceId, geojsonFeature);
   }
 
@@ -363,7 +379,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? maxzoom,
       dynamic filter,
       bool enableInteraction = true}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addSymbolLayer(
       sourceId,
       layerId,
@@ -402,7 +420,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? maxzoom,
       dynamic filter,
       bool enableInteraction = true}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addLineLayer(
       sourceId,
       layerId,
@@ -441,7 +461,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? maxzoom,
       dynamic filter,
       bool enableInteraction = true}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addFillLayer(
       sourceId,
       layerId,
@@ -480,7 +502,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? maxzoom,
       dynamic filter,
       bool enableInteraction = true}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addFillExtrusionLayer(
       sourceId,
       layerId,
@@ -519,7 +543,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? maxzoom,
       dynamic filter,
       bool enableInteraction = true}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addCircleLayer(
       sourceId,
       layerId,
@@ -549,7 +575,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// visible.
   Future<void> addRasterLayer(String sourceId, String layerId, RasterLayerProperties properties,
       {String? belowLayerId, String? sourceLayer, double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addRasterLayer(
       sourceId,
       layerId,
@@ -577,7 +605,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// visible.
   Future<void> addHillshadeLayer(String sourceId, String layerId, HillshadeLayerProperties properties,
       {String? belowLayerId, String? sourceLayer, double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addHillshadeLayer(
       sourceId,
       layerId,
@@ -605,7 +635,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// visible.
   Future<void> addHeatmapLayer(String sourceId, String layerId, HeatmapLayerProperties properties,
       {String? belowLayerId, String? sourceLayer, double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await _nbMapsGlPlatform.addHeatmapLayer(
       sourceId,
       layerId,
@@ -622,7 +654,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> updateMyLocationTrackingMode(MyLocationTrackingMode myLocationTrackingMode) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.updateMyLocationTrackingMode(myLocationTrackingMode);
   }
 
@@ -631,7 +665,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> matchMapLanguageWithDeviceDefault() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.matchMapLanguageWithDeviceDefault();
   }
 
@@ -647,7 +683,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> updateContentInsets(EdgeInsets insets, [bool animated = false]) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.updateContentInsets(insets, animated);
   }
 
@@ -657,7 +695,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> setMapLanguage(String language) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.setMapLanguage(language);
   }
 
@@ -666,7 +706,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the change has been made on the
   /// platform side.
   Future<void> setTelemetryEnabled(bool enabled) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.setTelemetryEnabled(enabled);
   }
 
@@ -675,7 +717,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes after the query has been made on the
   /// platform side.
   Future<bool> getTelemetryEnabled() async {
-    _disposeGuard();
+    if(_disposed) {
+      return false;
+    }
     return await _nbMapsGlPlatform.getTelemetryEnabled();
   }
 
@@ -686,11 +730,16 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added symbol once listeners have
   /// been notified.
-  Future<Symbol> addSymbol(SymbolOptions options, [Map? data]) async {
-    _disposeGuard();
+  Future<Symbol?> addSymbol(SymbolOptions options, [Map? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final effectiveOptions = SymbolOptions.defaultOptions.copyWith(options);
     final symbol = Symbol(getRandomString(), effectiveOptions, data);
     await symbolManager!.add(symbol);
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return symbol;
   }
@@ -703,14 +752,18 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added symbol once listeners have
   /// been notified.
-  Future<List<Symbol>> addSymbols(List<SymbolOptions> options, [List<Map>? data]) async {
-    _disposeGuard();
+  Future<List<Symbol>?> addSymbols(List<SymbolOptions> options, [List<Map>? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final symbols = [
       for (var i = 0; i < options.length; i++)
         Symbol(getRandomString(), SymbolOptions.defaultOptions.copyWith(options[i]), data?[i])
     ];
     await symbolManager!.addAll(symbols);
-
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return symbols;
   }
@@ -723,17 +776,23 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> updateSymbol(Symbol symbol, SymbolOptions changes) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager!.set(symbol..options = symbol.options.copyWith(changes));
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
   /// Retrieves the current position of the symbol.
   /// This may be different from the value of `symbol.options.geometry` if the symbol is draggable.
   /// In that case this method provides the symbol's actual position, and `symbol.options.geometry` the last programmatically set position.
-  Future<LatLng> getSymbolLatLng(Symbol symbol) async {
-    _disposeGuard();
+  Future<LatLng?> getSymbolLatLng(Symbol symbol) async {
+    if(_disposed) {
+      return null;
+    }
     return symbol.options.geometry!;
   }
 
@@ -745,8 +804,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeSymbol(Symbol symbol) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager!.remove(symbol);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -758,8 +822,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeSymbols(Iterable<Symbol> symbols) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager!.removeAll(symbols);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -770,7 +839,9 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> clearSymbols() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     symbolManager!.clear();
     notifyListeners();
   }
@@ -782,11 +853,16 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added line once listeners have
   /// been notified.
-  Future<Line> addLine(LineOptions options, [Map? data]) async {
-    _disposeGuard();
+  Future<Line?> addLine(LineOptions options, [Map? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final effectiveOptions = LineOptions.defaultOptions.copyWith(options);
     final line = Line(getRandomString(), effectiveOptions, data);
     await lineManager!.add(line);
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return line;
   }
@@ -798,14 +874,18 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added line once listeners have
   /// been notified.
-  Future<List<Line>> addLines(List<LineOptions> options, [List<Map>? data]) async {
-    _disposeGuard();
+  Future<List<Line>?> addLines(List<LineOptions> options, [List<Map>? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final lines = [
       for (var i = 0; i < options.length; i++)
         Line(getRandomString(), LineOptions.defaultOptions.copyWith(options[i]), data?[i])
     ];
     await lineManager!.addAll(lines);
-
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return lines;
   }
@@ -818,17 +898,24 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> updateLine(Line line, LineOptions changes) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     line.options = line.options.copyWith(changes);
     await lineManager!.set(line);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
   /// Retrieves the current position of the line.
   /// This may be different from the value of `line.options.geometry` if the line is draggable.
   /// In that case this method provides the line's actual position, and `line.options.geometry` the last programmatically set position.
-  Future<List<LatLng>> getLineLatLngs(Line line) async {
-    _disposeGuard();
+  Future<List<LatLng>?> getLineLatLngs(Line line) async {
+    if(_disposed) {
+      return null;
+    }
     return line.options.geometry!;
   }
 
@@ -840,8 +927,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeLine(Line line) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await lineManager!.remove(line);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -853,8 +945,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeLines(Iterable<Line> lines) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await lineManager!.removeAll(lines);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -865,8 +962,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> clearLines() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await lineManager!.clear();
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -877,11 +979,16 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added circle once listeners have
   /// been notified.
-  Future<Circle> addCircle(CircleOptions options, [Map? data]) async {
-    _disposeGuard();
+  Future<Circle?> addCircle(CircleOptions options, [Map? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final CircleOptions effectiveOptions = CircleOptions.defaultOptions.copyWith(options);
     final circle = Circle(getRandomString(), effectiveOptions, data);
     await circleManager!.add(circle);
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return circle;
   }
@@ -894,8 +1001,10 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added circle once listeners have
   /// been notified.
-  Future<List<Circle>> addCircles(List<CircleOptions> options, [List<Map>? data]) async {
-    _disposeGuard();
+  Future<List<Circle>?> addCircles(List<CircleOptions> options, [List<Map>? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final cricles = [
       for (var i = 0; i < options.length; i++)
         Circle(getRandomString(), CircleOptions.defaultOptions.copyWith(options[i]), data?[i])
@@ -903,6 +1012,9 @@ class NextbillionMapController extends ChangeNotifier {
     await circleManager!.addAll(cricles);
 
     notifyListeners();
+    if(_disposed) {
+      return null;
+    }
     return cricles;
   }
 
@@ -914,18 +1026,24 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> updateCircle(Circle circle, CircleOptions changes) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     circle.options = circle.options.copyWith(changes);
     await circleManager!.set(circle);
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
   /// Retrieves the current position of the circle.
   /// This may be different from the value of `circle.options.geometry` if the circle is draggable.
   /// In that case this method provides the circle's actual position, and `circle.options.geometry` the last programmatically set position.
-  Future<LatLng> getCircleLatLng(Circle circle) async {
-    _disposeGuard();
+  Future<LatLng?> getCircleLatLng(Circle circle) async {
+    if(_disposed) {
+      return null;
+    }
     return circle.options.geometry!;
   }
 
@@ -937,9 +1055,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeCircle(Circle circle) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await circleManager!.remove(circle);
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -951,8 +1073,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeCircles(Iterable<Circle> circles) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await circleManager!.removeAll(circles);
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -963,9 +1090,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> clearCircles() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await circleManager!.clear();
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -976,11 +1107,16 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes with the added fill once listeners have
   /// been notified.
-  Future<Fill> addFill(FillOptions options, [Map? data]) async {
-    _disposeGuard();
+  Future<Fill?> addFill(FillOptions options, [Map? data]) async {
+    if(_disposed) {
+      return null;
+    }
     final FillOptions effectiveOptions = FillOptions.defaultOptions.copyWith(options);
     final fill = Fill(getRandomString(), effectiveOptions, data);
     await fillManager!.add(fill);
+    if(_disposed) {
+      return null;
+    }
     notifyListeners();
     return fill;
   }
@@ -994,7 +1130,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// The returned [Future] completes with the added fills once listeners have
   /// been notified.
   Future<List<Fill>> addFills(List<FillOptions> options, [List<Map>? data]) async {
-    _disposeGuard();
+    if(_disposed) {
+      return [];
+    }
     final fills = [
       for (var i = 0; i < options.length; i++)
         Fill(getRandomString(), FillOptions.defaultOptions.copyWith(options[i]), data?[i])
@@ -1013,10 +1151,14 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> updateFill(Fill fill, FillOptions changes) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     fill.options = fill.options.copyWith(changes);
     await fillManager!.set(fill);
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -1027,9 +1169,13 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> clearFills() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await fillManager!.clear();
-
+    if(_disposed) {
+      return;
+    }
     notifyListeners();
   }
 
@@ -1041,7 +1187,9 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeFill(Fill fill) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await fillManager!.remove(fill);
     notifyListeners();
   }
@@ -1054,25 +1202,33 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// The returned [Future] completes once listeners have been notified.
   Future<void> removeFills(Iterable<Fill> fills) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await fillManager!.removeAll(fills);
     notifyListeners();
   }
 
   /// Query rendered features at a point in screen cooridnates
   Future<List> queryRenderedFeatures(Point<double> point, List<String> layerIds, List<Object>? filter) async {
-    _disposeGuard();
+    if(_disposed) {
+      return [];
+    }
     return await _nbMapsGlPlatform.queryRenderedFeatures(point, layerIds, filter);
   }
 
   /// Query rendered features in a Rect in screen coordinates
-  Future<List> queryRenderedFeaturesInRect(Rect rect, List<String> layerIds, String? filter) async {
-    _disposeGuard();
+  Future<List?> queryRenderedFeaturesInRect(Rect rect, List<String> layerIds, String? filter) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.queryRenderedFeaturesInRect(rect, layerIds, filter);
   }
 
   Future invalidateAmbientCache() async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.invalidateAmbientCache();
   }
 
@@ -1080,19 +1236,25 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// Return last latlng, nullable
   Future<LatLng?> requestMyLocationLatLng() async {
-    _disposeGuard();
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.requestMyLocationLatLng();
   }
 
   /// This method returns the boundaries of the region currently displayed in the map.
-  Future<LatLngBounds> getVisibleRegion() async {
-    _disposeGuard();
+  Future<LatLngBounds?> getVisibleRegion() async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.getVisibleRegion();
   }
 
   /// Update map style for MapView
   Future<void> setStyleString(String styleString) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.setStyleString(styleString);
   }
 
@@ -1132,65 +1294,87 @@ class NextbillionMapController extends ChangeNotifier {
   /// }
   /// ```
   Future<void> addImage(String name, Uint8List bytes, [bool sdf = false]) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addImage(name, bytes, sdf);
   }
 
   Future<void> setSymbolIconAllowOverlap(bool enable) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager?.setIconAllowOverlap(enable);
   }
 
   Future<void> setSymbolIconIgnorePlacement(bool enable) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager?.setIconIgnorePlacement(enable);
   }
 
   Future<void> setSymbolTextAllowOverlap(bool enable) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager?.setTextAllowOverlap(enable);
   }
 
   Future<void> setSymbolTextIgnorePlacement(bool enable) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     await symbolManager?.setTextIgnorePlacement(enable);
   }
 
   /// Adds an image source to the style currently displayed in the map, so that it can later be referred to by the provided id.
   Future<void> addImageSource(String imageSourceId, Uint8List bytes, LatLngQuad coordinates) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addImageSource(imageSourceId, bytes, coordinates);
   }
 
   /// Update an image source to the style currently displayed in the map, so that it can later be referred to by the provided id.
   Future<void> updateImageSource(String imageSourceId, Uint8List? bytes, LatLngQuad? coordinates) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.updateImageSource(imageSourceId, bytes, coordinates);
   }
 
   /// Removes previously added image source by id
   @Deprecated("This method was renamed to removeSource")
   Future<void> removeImageSource(String imageSourceId) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.removeSource(imageSourceId);
   }
 
   /// Removes previously added source by id
   Future<void> removeSource(String sourceId) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.removeSource(sourceId);
   }
 
   /// Adds a NbMaps image layer to the map's style at render time.
   Future<void> addImageLayer(String layerId, String imageSourceId, {double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addLayer(layerId, imageSourceId, minzoom, maxzoom);
   }
 
   /// Adds a NbMaps image layer below the layer provided with belowLayerId to the map's style at render time.
   Future<void> addImageLayerBelow(String layerId, String sourceId, String imageSourceId,
       {double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
   }
 
@@ -1198,18 +1382,24 @@ class NextbillionMapController extends ChangeNotifier {
   @Deprecated("This method was renamed to addImageLayerBelow for clarity.")
   Future<void> addLayerBelow(String layerId, String sourceId, String imageSourceId,
       {double? minzoom, double? maxzoom}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addLayerBelow(layerId, sourceId, imageSourceId, minzoom, maxzoom);
   }
 
   /// Removes a nbmaps style layer
   Future<void> removeLayer(String layerId) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.removeLayer(layerId);
   }
 
   Future<void> setFilter(String layerId, dynamic filter) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.setFilter(layerId, filter);
   }
 
@@ -1217,7 +1407,9 @@ class NextbillionMapController extends ChangeNotifier {
   /// the specified id [layerId].
   /// Returns silently if [layerId] does not exist.
   Future<void> setVisibility(String layerId, bool isVisible) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.setVisibility(layerId, isVisible);
   }
 
@@ -1228,31 +1420,41 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// Returns null if [latLng] is not currently visible on the map.
   Future<Point> toScreenLocation(LatLng latLng) async {
-    _disposeGuard();
+    if(_disposed) {
+      return Point(0, 0);
+    }
     return await _nbMapsGlPlatform.toScreenLocation(latLng);
   }
 
-  Future<List<Point>> toScreenLocationBatch(Iterable<LatLng> latLngs) async {
-    _disposeGuard();
+  Future<List<Point>?> toScreenLocationBatch(Iterable<LatLng> latLngs) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.toScreenLocationBatch(latLngs);
   }
 
   /// Returns the geographic location (as [LatLng]) that corresponds to a point on the screen. The screen location is specified in screen pixels (not display pixels) relative to the top left of the map (not the top left of the whole screen).
-  Future<LatLng> toLatLng(Point screenLocation) async {
-    _disposeGuard();
+  Future<LatLng?> toLatLng(Point screenLocation) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.toLatLng(screenLocation);
   }
 
   /// Returns the distance spanned by one pixel at the specified [latitude] and current zoom level.
   /// The distance between pixels decreases as the latitude approaches the poles. This relationship parallels the relationship between longitudinal coordinates at different latitudes.
-  Future<double> getMetersPerPixelAtLatitude(double latitude) async {
-    _disposeGuard();
+  Future<double?> getMetersPerPixelAtLatitude(double latitude) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.getMetersPerPixelAtLatitude(latitude);
   }
 
   /// Add a new source to the map
   Future<void> addSource(String sourceid, SourceProperties properties) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     return await _nbMapsGlPlatform.addSource(sourceid, properties);
   }
 
@@ -1282,7 +1484,9 @@ class NextbillionMapController extends ChangeNotifier {
       double? minzoom,
       double? maxzoom,
       dynamic filter}) async {
-    _disposeGuard();
+    if(_disposed) {
+      return;
+    }
     if (properties is FillLayerProperties) {
       addFillLayer(sourceId, layerId, properties,
           belowLayerId: belowLayerId,
@@ -1344,23 +1548,20 @@ class NextbillionMapController extends ChangeNotifier {
   ///
   /// Default will return snapshot uri in Android and iOS
   /// If you want base64 value, you must set writeToDisk option to False
-  Future<String> takeSnapshot(SnapshotOptions snapshotOptions) async {
-    _disposeGuard();
+  Future<String?> takeSnapshot(SnapshotOptions snapshotOptions) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.takeSnapshot(snapshotOptions);
   }
 
-  Future<String> findBelowLayerId(List<String> belowAt) async {
-    _disposeGuard();
+  Future<String?> findBelowLayerId(List<String> belowAt) async {
+    if(_disposed) {
+      return null;
+    }
     return await _nbMapsGlPlatform.findBelowLayerId(belowAt);
   }
-
-  void _disposeGuard() {
-    if (_disposed) {
-      throw StateError(
-        'This NextbillionMapController has already been disposed. This happens if flutter disposes a NBMap and you try to use its Controller afterwards.',
-      );
-    }
-  }
+  
 
   @override
   void dispose() {

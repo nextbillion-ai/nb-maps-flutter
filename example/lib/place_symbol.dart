@@ -261,7 +261,7 @@ class PlaceSymbolBodyState extends State<PlaceSymbolBody> {
   }
 
   void _getLatLng() async {
-    LatLng latLng = await controller!.getSymbolLatLng(_selectedSymbol!);
+    LatLng? latLng = await controller!.getSymbolLatLng(_selectedSymbol!);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(latLng.toString()),
