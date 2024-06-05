@@ -61,7 +61,7 @@ class NBMap extends StatefulWidget {
   ///
   /// Any annotation type can only be contained once, so 0 to 4 types
   ///
-  /// Note that setting this to be empty gives a big perfomance boost for
+  /// Note that setting this to be empty gives a big performance boost for
   /// android. However if you do so annotations will not work.
   final List<AnnotationType> annotationOrder;
 
