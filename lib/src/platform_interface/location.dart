@@ -1,4 +1,3 @@
-
 part of nb_maps_flutter;
 
 /// A pair of latitude and longitude coordinates, stored as degrees.
@@ -50,7 +49,7 @@ class LatLng {
   }
 
   @override
-  int get hashCode => hashValues(latitude, longitude);
+  int get hashCode => Object.hash(latitude, longitude);
 }
 
 /// A latitude/longitude aligned rectangle.
@@ -110,7 +109,9 @@ class LatLngBounds {
       }
     }
 
-    return LatLngBounds(southwest: LatLng(minLat!, minLon!), northeast: LatLng(maxLat!, maxLon!));
+    return LatLngBounds(
+        southwest: LatLng(minLat!, minLon!),
+        northeast: LatLng(maxLat!, maxLon!));
   }
 
   dynamic toList() {
@@ -141,7 +142,7 @@ class LatLngBounds {
   }
 
   @override
-  int get hashCode => hashValues(southwest, northeast);
+  int get hashCode => Object.hash(southwest, northeast);
 }
 
 /// A geographical area representing a non-aligned quadrilateral
@@ -199,7 +200,7 @@ class LatLngQuad {
   }
 
   @override
-  int get hashCode => hashValues(topLeft, topRight, bottomRight, bottomLeft);
+  int get hashCode => Object.hash(topLeft, topRight, bottomRight, bottomLeft);
 }
 
 /// User's observed location

@@ -1,4 +1,3 @@
-
 part of nb_maps_flutter;
 
 /// The position of the map "camera", the view point from which the world is
@@ -66,18 +65,19 @@ class CameraPosition {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final CameraPosition typedOther = other;
-    return bearing == typedOther.bearing &&
-        target == typedOther.target &&
-        tilt == typedOther.tilt &&
-        zoom == typedOther.zoom;
+
+    return other is CameraPosition &&
+        bearing == other.bearing &&
+        target == other.target &&
+        tilt == other.tilt &&
+        zoom == other.zoom;
   }
 
   @override
-  int get hashCode => hashValues(bearing, target, tilt, zoom);
+  int get hashCode => Object.hash(bearing, target, tilt, zoom);
 
   @override
   String toString() =>

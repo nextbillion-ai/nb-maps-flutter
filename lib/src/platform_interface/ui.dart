@@ -1,27 +1,32 @@
-
 part of nb_maps_flutter;
 
 class NbMapStyles {
-  static const String NBMAP_STREETS = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
+  static const String NBMAP_STREETS =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
 
   /// Outdoors: A general-purpose style tailored to outdoor activities. Using this constant means
   /// your map style will always use the latest version and may change as we improve the style.
-  static const String OUTDOORS = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
+  static const String OUTDOORS =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
 
   /// Light: Subtle light backdrop for data visualizations. Using this constant means your map
   /// style will always use the latest version and may change as we improve the style.
-  static const String LIGHT = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
+  static const String LIGHT =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
 
   /// Empty: Basic empty style
-  static const String EMPTY = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
+  static const String EMPTY =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light";
 
   /// Dark: Subtle dark backdrop for data visualizations. Using this constant means your map style
   /// will always use the latest version and may change as we improve the style.
-  static const String DARK = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-dark";
+  static const String DARK =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-dark";
 
   /// Satellite: A beautiful global satellite and aerial imagery layer. Using this constant means
   /// your map style will always use the latest version and may change as we improve the style.
-  static const String SATELLITE = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-satellite";
+  static const String SATELLITE =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-satellite";
 
   /// Satellite Streets: Global satellite and aerial imagery with unobtrusive labels. Using this
   /// constant means your map style will always use the latest version and may change as we
@@ -33,13 +38,15 @@ class NbMapStyles {
   /// available in
   /// countries</a>. Using this constant means your map style will always use the latest version and
   /// may change as we improve the style.
-  static const String TRAFFIC_DAY = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light&traffic_incidents=2/incidents_light&traffic_flow=2/flow_relative-light";
+  static const String TRAFFIC_DAY =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-light&traffic_incidents=2/incidents_light&traffic_flow=2/flow_relative-light";
 
   /// Traffic Night: Color-coded roads based on live traffic congestion data, designed to maximize
   /// legibility in low-light situations. Traffic data is currently available in
   /// countries</a>. Using this constant means your map style will always use the latest version and
   /// may change as we improve the style.
-  static const String TRAFFIC_NIGHT = "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-dark&traffic_incidents=2/incidents_dark&traffic_flow=2/flow_relative-dark";
+  static const String TRAFFIC_NIGHT =
+      "https://api.nextbillion.io/tt/style/1/style/22.2.1-9?map=2/basic_street-dark&traffic_incidents=2/incidents_dark&traffic_flow=2/flow_relative-dark";
 }
 
 /// The camera mode, which determines how the map camera will track the rendered location.
@@ -93,11 +100,11 @@ class CameraTargetBounds {
   dynamic toJson() => <dynamic>[bounds?.toList()];
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final CameraTargetBounds typedOther = other;
-    return bounds == typedOther.bounds;
+
+    return other is CameraTargetBounds && bounds == other.bounds;
   }
 
   @override
@@ -130,15 +137,17 @@ class MinMaxZoomPreference {
   dynamic toJson() => <dynamic>[minZoom, maxZoom];
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
-    final MinMaxZoomPreference typedOther = other;
-    return minZoom == typedOther.minZoom && maxZoom == typedOther.maxZoom;
+
+    return other is MinMaxZoomPreference &&
+        minZoom == other.minZoom &&
+        maxZoom == other.maxZoom;
   }
 
   @override
-  int get hashCode => hashValues(minZoom, maxZoom);
+  int get hashCode => Object.hash(minZoom, maxZoom);
 
   @override
   String toString() {
