@@ -63,6 +63,20 @@ class _MapsDemoState extends State<MapsDemo> {
   void initState() {
     super.initState();
     NextBillion.initNextBillion(MapsDemo.ACCESS_KEY);
+
+
+    NextBillion.getUserId().then((value) {
+      print("User id: $value");
+    });
+    NextBillion.setUserId("1234");
+    NextBillion.getNbId().then((value) {
+      print("NB id: $value");
+    });
+
+    NextBillion.getUserId().then((value) {
+      print("User id: $value");
+    });
+
   }
 
   /// Determine the android version of the phone and turn off HybridComposition

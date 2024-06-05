@@ -56,6 +56,20 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
                 String keyHeaderName = NbMapUtils.getApiKeyHeaderName();
                 result.success(keyHeaderName);
                 break;
+            case "nextbillion/get_nb_id":
+                String nbId = NbMapUtils.getNbId();
+                result.success(nbId);
+                break;
+            case "nextbillion/set_user_id":
+                String id = call.argument("userId");
+                NbMapUtils.setUserid(id);
+                result.success(null);
+                break;
+            case "nextbillion/get_user_id":
+                String userId = NbMapUtils.getUserid();
+                result.success(userId);
+                break;
+
             default:
                 result.notImplemented();
         }

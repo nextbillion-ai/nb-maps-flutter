@@ -56,6 +56,19 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                 result(nil)
             case "nextbillion/get_key_header_name":
                 result(NGLAccountManager.apiKeyHeaderName)
+
+            case "nextbillion/get_nb_id":
+                 result(NGLAccountManager.nbId)
+            case "nextbillion/get_user_id":
+                 result(NGLAccountManager.userId)
+            case "nextbillion/set_user_id":
+                if let args = call.arguments as? [String: Any] {
+                   if let userId = args["userId"] as? String? {
+                      NGLAccountManager.userId = userId
+                   }
+                }
+                result(nil)
+
             default:
                 result(FlutterMethodNotImplemented)
             }
