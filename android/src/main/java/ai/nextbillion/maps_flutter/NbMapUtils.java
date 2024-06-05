@@ -55,4 +55,17 @@ abstract class NbMapUtils {
     static String getApiKeyHeaderName() {
         return Nextbillion.getApiKeyHeaderName();
     }
+
+    static String getUserid() {
+        return Nextbillion.getUserId();
+    }
+
+    static void setUserid(String userid) {
+        Nextbillion.setUserId(userid);
+    }
+
+    static String getNbId() {
+        return Nextbillion.getNBId();
+    }
+
 }

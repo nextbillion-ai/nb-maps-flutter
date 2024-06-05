@@ -34,4 +34,19 @@ class NextBillion {
   static Future<String> getApiKeyHeaderName() async {
     return await _nextBillionChannel.invokeMethod("nextbillion/get_key_header_name");
   }
+
+  static Future<String> getNbId() async {
+    return await _nextBillionChannel.invokeMethod("nextbillion/get_nb_id");
+  }
+
+  static Future<void> setUserId(String id) async {
+    Map<String, dynamic> config = {"userId": id};
+    return await _nextBillionChannel.invokeMethod("nextbillion/set_user_id",config);
+  }
+
+  static Future<String?> getUserId() async {
+    return await _nextBillionChannel.invokeMethod("nextbillion/get_user_id");
+  }
+
+
 }
