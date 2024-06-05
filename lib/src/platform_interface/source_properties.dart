@@ -78,15 +78,14 @@ class VectorSourceProperties implements SourceProperties {
   });
 
   VectorSourceProperties copyWith(
-    String? url,
-    List<String>? tiles,
-    List<double>? bounds,
-    String? scheme,
-    double? minzoom,
-    double? maxzoom,
-    String? attribution,
-    String? promoteId,
-  ) {
+      {String? url,
+      List<String>? tiles,
+      List<double>? bounds,
+      String? scheme,
+      double? minzoom,
+      double? maxzoom,
+      String? attribution,
+      String? promoteId}) {
     return VectorSourceProperties(
       url: url ?? this.url,
       tiles: tiles ?? this.tiles,
@@ -206,7 +205,7 @@ class RasterSourceProperties implements SourceProperties {
     this.attribution,
   });
 
-  RasterSourceProperties copyWith(
+  RasterSourceProperties copyWith({
     String? url,
     List<String>? tiles,
     List<double>? bounds,
@@ -215,7 +214,7 @@ class RasterSourceProperties implements SourceProperties {
     double? tileSize,
     String? scheme,
     String? attribution,
-  ) {
+  }) {
     return RasterSourceProperties(
       url: url ?? this.url,
       tiles: tiles ?? this.tiles,
@@ -330,7 +329,7 @@ class RasterDemSourceProperties implements SourceProperties {
     this.encoding = "nbmap",
   });
 
-  RasterDemSourceProperties copyWith(
+  RasterDemSourceProperties copyWith({
     String? url,
     List<String>? tiles,
     List<double>? bounds,
@@ -339,7 +338,7 @@ class RasterDemSourceProperties implements SourceProperties {
     double? tileSize,
     String? attribution,
     String? encoding,
-  ) {
+  }) {
     return RasterDemSourceProperties(
       url: url ?? this.url,
       tiles: tiles ?? this.tiles,
@@ -505,19 +504,18 @@ class GeojsonSourceProperties implements SourceProperties {
   });
 
   GeojsonSourceProperties copyWith(
-    Object? data,
-    double? maxzoom,
-    String? attribution,
-    double? buffer,
-    double? tolerance,
-    bool? cluster,
-    double? clusterRadius,
-    double? clusterMaxZoom,
-    Object? clusterProperties,
-    bool? lineMetrics,
-    bool? generateId,
-    String? promoteId,
-  ) {
+      {Object? data,
+      double? maxzoom,
+      String? attribution,
+      double? buffer,
+      double? tolerance,
+      bool? cluster,
+      double? clusterRadius,
+      double? clusterMaxZoom,
+      Object? clusterProperties,
+      bool? lineMetrics,
+      bool? generateId,
+      String? promoteId}) {
     return GeojsonSourceProperties(
       data: data ?? this.data,
       maxzoom: maxzoom ?? this.maxzoom,
@@ -594,9 +592,7 @@ class VideoSourceProperties implements SourceProperties {
   });
 
   VideoSourceProperties copyWith(
-    List<String>? urls,
-    List<List>? coordinates,
-  ) {
+      {List<String>? urls, List<List>? coordinates}) {
     return VideoSourceProperties(
       urls: urls ?? this.urls,
       coordinates: coordinates ?? this.coordinates,
@@ -642,10 +638,7 @@ class ImageSourceProperties implements SourceProperties {
     this.coordinates,
   });
 
-  ImageSourceProperties copyWith(
-    String? url,
-    List<List>? coordinates,
-  ) {
+  ImageSourceProperties copyWith({String? url, List<List>? coordinates}) {
     return ImageSourceProperties(
       url: url ?? this.url,
       coordinates: coordinates ?? this.coordinates,

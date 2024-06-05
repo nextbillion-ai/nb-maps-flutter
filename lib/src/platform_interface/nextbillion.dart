@@ -1,8 +1,15 @@
 part of nb_maps_flutter;
 
 class NextBillion {
-  static const MethodChannel _nextBillionChannel =
+  static MethodChannel _nextBillionChannel =
       MethodChannel("plugins.flutter.io/nextbillion_init");
+
+  get channel => _nextBillionChannel;
+
+  @visibleForTesting
+  static setMockMethodChannel(MethodChannel channel) {
+    _nextBillionChannel = channel;
+  }
 
   static Future<void> initNextBillion(String accessKey) async {
     Map<String, dynamic> config = {"accessKey": accessKey};
