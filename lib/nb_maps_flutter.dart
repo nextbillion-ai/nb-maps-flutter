@@ -2,7 +2,6 @@ library nb_maps_flutter;
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:isolate';
 import 'dart:math';
 import 'dart:io';
 
