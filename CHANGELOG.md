@@ -1,3 +1,7 @@
+## v0.4.1, June 5, 2024
+* Add setUserId method to NextBillion
+* Add getUserId method to NextBillion
+* Add getNbId method to NextBillion
 ## v0.4.0, May 29, 2024
 * Remove state check exception when calling methods of NextbillionMapController after the controller is disposed
 
