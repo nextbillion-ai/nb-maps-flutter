@@ -1,4 +1,3 @@
-
 part of nb_maps_flutter;
 
 enum AnnotationType { fill, line, circle, symbol }
@@ -271,7 +270,8 @@ class _NBMapState extends State<NBMap> {
   @override
   void didUpdateWidget(NBMap oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final _NextBillionMapOptions newOptions = _NextBillionMapOptions.fromWidget(widget);
+    final _NextBillionMapOptions newOptions =
+        _NextBillionMapOptions.fromWidget(widget);
     final Map<String, dynamic> updates =
         _nextbillionMapOptions.updatesMap(newOptions);
     _updateOptions(updates);

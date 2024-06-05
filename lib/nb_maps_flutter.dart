@@ -1,4 +1,3 @@
-
 library nb_maps_flutter;
 
 import 'dart:async';
@@ -37,4 +36,3 @@ part 'src/platform_interface/snapshot.dart';
 part 'src/platform_interface/nbmaps_platform_interface.dart';
 part 'src/platform_interface/source_properties.dart';
 part 'src/platform_interface/nextbillion.dart';
-

@@ -1,5 +1,22 @@
 part of nb_maps_flutter;
 
+abstract class PlatformWrapper {
+  bool get isAndroid;
+}
+
+class PlatformWrapperImpl extends PlatformWrapper {
+  static final PlatformWrapperImpl _instance = PlatformWrapperImpl._();
+
+  factory PlatformWrapperImpl() {
+    return _instance;
+  }
+
+  PlatformWrapperImpl._();
+
+  @override
+  bool get isAndroid => Platform.isAndroid;
+}
+
 /// Set of options for taking map snapshot
 class SnapshotOptions {
   /// Dimensions of the snapshot
@@ -46,6 +63,8 @@ class SnapshotOptions {
   /// False: Return base64 value
   final bool writeToDisk;
 
+  final PlatformWrapper _platformWrapper;
+
   ///The [width] and [height] arguments must not be null
   SnapshotOptions(
       {required this.width,
@@ -58,11 +77,13 @@ class SnapshotOptions {
       this.styleUri,
       this.styleJson,
       bool? withLogo,
-      bool? writeToDisk})
+      bool? writeToDisk,
+      PlatformWrapper? platformWrapper})
       : this.withLogo = withLogo ?? false,
         this.writeToDisk = writeToDisk ?? true,
         this.pitch = pitch ?? 0,
-        this.heading = heading ?? 0;
+        this.heading = heading ?? 0,
+        this._platformWrapper = platformWrapper ?? PlatformWrapperImpl();
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
@@ -77,7 +98,7 @@ class SnapshotOptions {
     addIfPresent('height', Platform.isAndroid ? height.toInt() : height);
 
     if (bounds != null) {
-      if (Platform.isAndroid) {
+      if (_platformWrapper.isAndroid) {
         final featureCollection = {
           "type": "FeatureCollection",
           "features": [
@@ -121,7 +142,7 @@ class SnapshotOptions {
       }
     }
     if (centerCoordinate != null && zoomLevel != null) {
-      if (Platform.isAndroid) {
+      if (_platformWrapper.isAndroid) {
         final feature = {
           "type": "Feature",
           "properties": {},

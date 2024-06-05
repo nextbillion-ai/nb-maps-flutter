@@ -770,14 +770,15 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
 
   @override
   Future<String> findBelowLayerId(List<String> belowAt) async {
-    return await _channel.invokeMethod('style#findBelowLayer', {"belowAt" : belowAt});
+    return await _channel
+        .invokeMethod('style#findBelowLayer', {"belowAt": belowAt});
   }
 
   @override
   Future<void> setStyleString(String styleString) async {
     try {
-      var uri = await _channel.invokeMethod(
-          'style#setStyleString', {"styleString" : styleString});
+      var uri = await _channel
+          .invokeMethod('style#setStyleString', {"styleString": styleString});
       return uri;
     } on PlatformException catch (e) {
       return new Future.error(e);

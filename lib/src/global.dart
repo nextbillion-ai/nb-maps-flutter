@@ -1,4 +1,3 @@
-
 part of nb_maps_flutter;
 
 final MethodChannel _globalChannel =

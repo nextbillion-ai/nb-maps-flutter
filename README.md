@@ -1,4 +1,5 @@
 # Nextbillion Maps Flutter
+[![codecov](https://codecov.io/github/nextbillion-ai/nb-maps-flutter/graph/badge.svg?token=3S22ZLBW7O)](https://codecov.io/github/nextbillion-ai/nb-maps-flutter)
 
 ## Instroduction
 ![Nextbillion_Maps_IMG](https://github.com/nextbillion-ai/nb-maps-flutter/assets/100656364/5b8cedb6-a839-45b4-bc04-a760ba562329)

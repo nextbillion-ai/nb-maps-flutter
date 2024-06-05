@@ -1,4 +1,3 @@
-
 part of nb_maps_flutter;
 
 /// Callback function taking a single argument.
