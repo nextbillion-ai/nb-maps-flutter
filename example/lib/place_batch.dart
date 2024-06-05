@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 import 'package:nb_maps_flutter_example/main.dart';
@@ -124,13 +123,13 @@ class BatchAddBodyState extends State<BatchAddBody> {
 
   void _remove() {
     controller.removeFills(_fills);
-    if(_lines != null){
+    if (_lines != null) {
       controller.removeLines(_lines!);
     }
-    if(_circles != null){
+    if (_circles != null) {
       controller.removeCircles(_circles!);
     }
-    if(_symbols != null){
+    if (_symbols != null) {
       controller.removeSymbols(_symbols!);
     }
     _fills.clear();

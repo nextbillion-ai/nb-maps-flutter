@@ -1,5 +1,3 @@
-
-
 part of nb_maps_flutter;
 
 abstract class SourceProperties {

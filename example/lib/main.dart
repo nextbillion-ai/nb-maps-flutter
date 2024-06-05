@@ -64,7 +64,6 @@ class _MapsDemoState extends State<MapsDemo> {
     super.initState();
     NextBillion.initNextBillion(MapsDemo.ACCESS_KEY);
 
-
     NextBillion.getUserId().then((value) {
       print("User id: $value");
     });
@@ -76,7 +75,6 @@ class _MapsDemoState extends State<MapsDemo> {
     NextBillion.getUserId().then((value) {
       print("User id: $value");
     });
-
   }
 
   /// Determine the android version of the phone and turn off HybridComposition
@@ -97,7 +95,7 @@ class _MapsDemoState extends State<MapsDemo> {
 
   void _pushPage(BuildContext context, ExamplePage page) async {
     var status = await Permission.location.status;
-    if(status.isDenied) {
+    if (status.isDenied) {
       await [Permission.location].request();
     }
 
@@ -112,11 +110,13 @@ class _MapsDemoState extends State<MapsDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('NbMaps examples')),
-      body: MapsDemo.ACCESS_KEY.isEmpty || MapsDemo.ACCESS_KEY.contains("YOUR_TOKEN")
+      body: MapsDemo.ACCESS_KEY.isEmpty ||
+              MapsDemo.ACCESS_KEY.contains("YOUR_TOKEN")
           ? buildAccessTokenWarning()
           : ListView.separated(
               itemCount: _allPages.length,
-              separatorBuilder: (BuildContext context, int index) => const Divider(height: 1),
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(height: 1),
               itemBuilder: (_, int index) => ListTile(
                 leading: _allPages[index].leading,
                 title: Text(_allPages[index].title),
@@ -140,7 +140,10 @@ class _MapsDemoState extends State<MapsDemo> {
                     padding: EdgeInsets.all(8),
                     child: Text(text,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
                   ))
               .toList(),
         ),

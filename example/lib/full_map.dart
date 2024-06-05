@@ -51,7 +51,8 @@ class FullMapState extends State<FullMap> {
         body: NBMap(
           styleString: isLight ? NbMapStyles.LIGHT : NbMapStyles.DARK,
           onMapCreated: _onMapCreated,
-          initialCameraPosition: const CameraPosition(target: LatLng(0.0, 0.0), zoom: 14),
+          initialCameraPosition:
+              const CameraPosition(target: LatLng(0.0, 0.0), zoom: 14),
           onStyleLoadedCallback: _onStyleLoadedCallback,
           myLocationTrackingMode: MyLocationTrackingMode.Tracking,
           myLocationEnabled: true,

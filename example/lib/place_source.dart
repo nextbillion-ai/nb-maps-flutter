@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -133,8 +132,8 @@ class PlaceSymbolBodyState extends State<PlaceSymbolBody> {
                       onPressed: sourceAdded
                           ? null
                           : () {
-                              addImageSourceFromAsset(
-                                      SOURCE_ID, 'assets/symbols/custom-icon.png')
+                              addImageSourceFromAsset(SOURCE_ID,
+                                      'assets/symbols/custom-icon.png')
                                   .then((value) {
                                 setState(() => sourceAdded = true);
                               });

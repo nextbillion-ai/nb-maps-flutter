@@ -61,12 +61,12 @@ class FullMapState extends State<FullMap> {
         "watercolor", "watercolor", RasterLayerProperties());
   }
 
-  static Future<void> addGeojsonCluster(NextbillionMapController controller) async {
+  static Future<void> addGeojsonCluster(
+      NextbillionMapController controller) async {
     await controller.addSource(
         "earthquakes",
         GeojsonSourceProperties(
-            data:
-                '',
+            data: '',
             cluster: true,
             clusterMaxZoom: 14, // Max zoom to cluster points on
             clusterRadius:
@@ -102,12 +102,12 @@ class FullMapState extends State<FullMap> {
         ));
   }
 
-  static Future<void> addGeojsonHeatmap(NextbillionMapController controller) async {
+  static Future<void> addGeojsonHeatmap(
+      NextbillionMapController controller) async {
     await controller.addSource(
         "earthquakes-heatmap-source",
         GeojsonSourceProperties(
-          data:
-              '',
+          data: '',
         ));
     await controller.addLayer(
         "earthquakes-heatmap-source",
@@ -169,7 +169,8 @@ class FullMapState extends State<FullMap> {
         ));
   }
 
-  static Future<void> addIndoorBuilding(NextbillionMapController controller) async {
+  static Future<void> addIndoorBuilding(
+      NextbillionMapController controller) async {
     final jsonStr =
         await rootBundle.loadString("assets/fill-extrusion/indoor_3d_map.json");
     await controller.addGeoJsonSource(
@@ -207,14 +208,12 @@ class FullMapState extends State<FullMap> {
   static Future<void> addImage(NextbillionMapController controller) async {
     await controller.addSource(
         "radar",
-        ImageSourceProperties(
-            url: "",
-            coordinates: [
-              [-80.425, 46.437],
-              [-71.516, 46.437],
-              [-71.516, 37.936],
-              [-80.425, 37.936]
-            ]));
+        ImageSourceProperties(url: "", coordinates: [
+          [-80.425, 46.437],
+          [-71.516, 46.437],
+          [-71.516, 37.936],
+          [-80.425, 37.936]
+        ]));
 
     await controller.addRasterLayer(
       "radar",
@@ -244,10 +243,7 @@ class FullMapState extends State<FullMap> {
   }
 
   static Future<void> addDem(NextbillionMapController controller) async {
-    await controller.addSource(
-        "dem",
-        RasterDemSourceProperties(
-            url: ""));
+    await controller.addSource("dem", RasterDemSourceProperties(url: ""));
 
     await controller.addLayer(
       "dem",

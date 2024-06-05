@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -348,7 +347,7 @@ class MapUiBodyState extends State<MapUiBody> {
         print("Filter $_featureQueryFilter");
         List features = await mapController!
             .queryRenderedFeatures(point, ["landuse"], _featureQueryFilter);
-        if(features == null){
+        if (features == null) {
           return;
         }
         print('# features: ${features.length}');
@@ -364,7 +363,7 @@ class MapUiBodyState extends State<MapUiBody> {
         print(
             "Map long press: ${point.x},${point.y}   ${latLng.latitude}/${latLng.longitude}");
         Point? convertedPoint = await mapController!.toScreenLocation(latLng);
-        if(convertedPoint == null){
+        if (convertedPoint == null) {
           return;
         }
         LatLng? convertedLatLng = await mapController!.toLatLng(point);

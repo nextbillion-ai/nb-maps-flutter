@@ -66,7 +66,7 @@ class CustomMarkerState extends State<CustomMarker> {
     }
 
     _mapController.toScreenLocationBatch(coordinates).then((points) {
-      if(points == null){
+      if (points == null) {
         return;
       }
       _markerStates.asMap().forEach((i, value) {
@@ -111,7 +111,7 @@ class CustomMarkerState extends State<CustomMarker> {
             }
 
             _mapController.toScreenLocationBatch(param).then((value) {
-              if(value == null) {
+              if (value == null) {
                 return;
               }
               for (var i = 0; i < randomMarkerNum; i++) {
