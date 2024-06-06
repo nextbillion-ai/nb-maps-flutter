@@ -233,7 +233,7 @@ class _NBMapState extends State<NBMap> {
   final Completer<NextbillionMapController> _controller =
       Completer<NextbillionMapController>();
 
-  late _NextBillionMapOptions _nextbillionMapOptions;
+  late NextBillionMapOptions _nextbillionMapOptions;
   final NbMapsGlPlatform _nbmapsGlPlatform = NbMapsGlPlatform.createInstance();
 
   @override
@@ -243,7 +243,7 @@ class _NBMapState extends State<NBMap> {
         "annotationOrder must not have duplicate types");
     final Map<String, dynamic> creationParams = <String, dynamic>{
       'initialCameraPosition': widget.initialCameraPosition.toMap(),
-      'options': _NextBillionMapOptions.fromWidget(widget).toMap(),
+      'options': NextBillionMapOptions.fromWidget(widget).toMap(),
       'onAttributionClickOverride': widget.onAttributionClick != null,
       'dragEnabled': widget.dragEnabled,
       'useHybridCompositionOverride': widget.useHybridCompositionOverride,
@@ -255,7 +255,7 @@ class _NBMapState extends State<NBMap> {
   @override
   void initState() {
     super.initState();
-    _nextbillionMapOptions = _NextBillionMapOptions.fromWidget(widget);
+    _nextbillionMapOptions = NextBillionMapOptions.fromWidget(widget);
   }
 
   @override
@@ -270,8 +270,8 @@ class _NBMapState extends State<NBMap> {
   @override
   void didUpdateWidget(NBMap oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final _NextBillionMapOptions newOptions =
-        _NextBillionMapOptions.fromWidget(widget);
+    final NextBillionMapOptions newOptions =
+        NextBillionMapOptions.fromWidget(widget);
     final Map<String, dynamic> updates =
         _nextbillionMapOptions.updatesMap(newOptions);
     _updateOptions(updates);
@@ -318,10 +318,9 @@ class _NBMapState extends State<NBMap> {
 
 /// Configuration options for the NbMaps user interface.
 ///
-/// When used to change configuration, null values will be interpreted as
-/// "do not change this configuration option".
-class _NextBillionMapOptions {
-  _NextBillionMapOptions({
+/// When used to modify the configuration, setting a value to null will indicate that the configuration option should not be changed.
+class NextBillionMapOptions {
+  NextBillionMapOptions({
     this.compassEnabled,
     this.cameraTargetBounds,
     this.styleString,
@@ -342,8 +341,8 @@ class _NextBillionMapOptions {
     this.attributionButtonMargins,
   });
 
-  static _NextBillionMapOptions fromWidget(NBMap map) {
-    return _NextBillionMapOptions(
+  static NextBillionMapOptions fromWidget(NBMap map) {
+    return NextBillionMapOptions(
       compassEnabled: map.compassEnabled,
       cameraTargetBounds: map.cameraTargetBounds,
       styleString: map.styleString,
@@ -451,7 +450,7 @@ class _NextBillionMapOptions {
     return optionsMap;
   }
 
-  Map<String, dynamic> updatesMap(_NextBillionMapOptions newOptions) {
+  Map<String, dynamic> updatesMap(NextBillionMapOptions newOptions) {
     final Map<String, dynamic> prevOptionsMap = toMap();
     final newOptionsMap = newOptions.toMap();
 
