@@ -1,3 +1,6 @@
+## v0.4.2, June 6, 2024
+* Update Android NB Maps SDK to 1.1.3 and Update iOS NB Maps framework to 1.1.4
+
 ## v0.4.1, June 5, 2024
 * Add setUserId method to NextBillion
 * Add getUserId method to NextBillion
