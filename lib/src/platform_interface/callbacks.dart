@@ -52,4 +52,6 @@ class ArgumentCallbacks<T> {
 
   /// Whether this collection is non-empty.
   bool get isNotEmpty => _callbacks.isNotEmpty;
+
+  int get length => _callbacks.length;
 }

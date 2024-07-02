@@ -135,6 +135,12 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     await _channel.invokeMethod('map#waitForMap');
   }
 
+  @visibleForTesting
+  void setMethodChanenl(MethodChannel channel) {
+    _channel = channel;
+    _channel.setMethodCallHandler(_handleMethodCall);
+  }
+
   @override
   Widget buildView(
       Map<String, dynamic> creationParams,
@@ -688,6 +694,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addRasterLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
@@ -706,6 +713,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addHillshadeLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
@@ -724,6 +732,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addHeatmapLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
