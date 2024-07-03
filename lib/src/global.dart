@@ -1,12 +1,19 @@
 part of nb_maps_flutter;
 
-final MethodChannel _globalChannel =
+typedef EventChannelCreator = EventChannel Function(String name);
+
+MethodChannel globalChannel =
     MethodChannel('plugins.flutter.io/nb_maps_flutter');
+
+@visibleForTesting
+void setTestingGlobalChannel(MethodChannel channel) {
+  globalChannel = channel;
+}
 
 /// Copy tiles db file passed in to the tiles cache directory (sideloaded) to
 /// make tiles available offline.
 Future<void> installOfflineMapTiles(String tilesDb) async {
-  await _globalChannel.invokeMethod(
+  await globalChannel.invokeMethod(
     'installOfflineMapTiles',
     <String, dynamic>{
       'tilesdb': tilesDb,
@@ -20,7 +27,7 @@ Future<dynamic> setOffline(
   bool offline, {
   String? accessToken,
 }) =>
-    _globalChannel.invokeMethod(
+    globalChannel.invokeMethod(
       'setOffline',
       <String, dynamic>{
         'offline': offline,
@@ -29,7 +36,7 @@ Future<dynamic> setOffline(
     );
 
 Future<void> setHttpHeaders(Map<String, String> headers) {
-  return _globalChannel.invokeMethod(
+  return globalChannel.invokeMethod(
     'setHttpHeaders',
     <String, dynamic>{
       'headers': headers,
@@ -41,7 +48,7 @@ Future<List<OfflineRegion>> mergeOfflineRegions(
   String path, {
   String? accessToken,
 }) async {
-  String regionsJson = await _globalChannel.invokeMethod(
+  String regionsJson = await globalChannel.invokeMethod(
     'mergeOfflineRegions',
     <String, dynamic>{
       'path': path,
@@ -53,7 +60,7 @@ Future<List<OfflineRegion>> mergeOfflineRegions(
 }
 
 Future<List<OfflineRegion>> getListOfRegions({String? accessToken}) async {
-  String regionsJson = await _globalChannel.invokeMethod(
+  String regionsJson = await globalChannel.invokeMethod(
     'getListOfRegions',
     <String, dynamic>{
       'accessToken': accessToken,
@@ -68,7 +75,7 @@ Future<OfflineRegion> updateOfflineRegionMetadata(
   Map<String, dynamic> metadata, {
   String? accessToken,
 }) async {
-  final regionJson = await _globalChannel.invokeMethod(
+  final regionJson = await globalChannel.invokeMethod(
     'updateOfflineRegionMetadata',
     <String, dynamic>{
       'id': id,
@@ -81,7 +88,7 @@ Future<OfflineRegion> updateOfflineRegionMetadata(
 }
 
 Future<dynamic> setOfflineTileCountLimit(int limit, {String? accessToken}) =>
-    _globalChannel.invokeMethod(
+    globalChannel.invokeMethod(
       'setOfflineTileCountLimit',
       <String, dynamic>{
         'limit': limit,
@@ -90,7 +97,7 @@ Future<dynamic> setOfflineTileCountLimit(int limit, {String? accessToken}) =>
     );
 
 Future<dynamic> deleteOfflineRegion(int id, {String? accessToken}) =>
-    _globalChannel.invokeMethod(
+    globalChannel.invokeMethod(
       'deleteOfflineRegion',
       <String, dynamic>{
         'id': id,
@@ -103,11 +110,12 @@ Future<OfflineRegion> downloadOfflineRegion(
   Map<String, dynamic> metadata = const {},
   String? accessToken,
   Function(DownloadRegionStatus event)? onEvent,
+  EventChannelCreator? eventChannelCreator,
 }) async {
   String channelName =
       'downloadOfflineRegion_${DateTime.now().microsecondsSinceEpoch}';
 
-  final result = await _globalChannel
+  final result = await globalChannel
       .invokeMethod('downloadOfflineRegion', <String, dynamic>{
     'accessToken': accessToken,
     'channelName': channelName,
@@ -116,7 +124,10 @@ Future<OfflineRegion> downloadOfflineRegion(
   });
 
   if (onEvent != null) {
-    EventChannel(channelName).receiveBroadcastStream().handleError((error) {
+    EventChannel eventChannel =
+        eventChannelCreator?.call(channelName) ?? EventChannel('channelName');
+
+    eventChannel.receiveBroadcastStream().handleError((error) {
       if (error is PlatformException) {
         onEvent(Error(error));
         return Error(error);
