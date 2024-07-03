@@ -21,7 +21,7 @@ void main() {
     channel = MockMethodChannel();
     // Set the mock channel to the platform channel
     nbMapsGlChannel = MethodChannelNbMapsGl();
-    nbMapsGlChannel.setMethodChanenl(channel);
+    nbMapsGlChannel.setTestingMethodChanenl(channel);
   });
 
   test('verify updateMapOptions', () async {

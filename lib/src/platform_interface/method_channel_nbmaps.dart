@@ -137,7 +137,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
   }
 
   @visibleForTesting
-  void setMethodChanenl(MethodChannel channel) {
+  void setTestingMethodChanenl(MethodChannel channel) {
     _channel = channel;
     _channel.setMethodCallHandler(handleMethodCall);
   }
