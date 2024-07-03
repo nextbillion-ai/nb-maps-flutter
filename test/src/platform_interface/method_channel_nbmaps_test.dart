@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -575,7 +576,7 @@ void main() {
     verify(channel.invokeMethod('source#addGeoJson', args)).called(1);
   });
 
-  test('teat setGeoJsonSource', () async {
+  test('test setGeoJsonSource', () async {
     final sourceId = 'sourceId';
     final geoJson = {
       'type': 'FeatureCollection',
@@ -799,7 +800,6 @@ void main() {
   test('test addSource', () async {
     String sourceId = 'sourceId';
     SourceProperties properties = VectorSourceProperties();
-    
 
     Map<String, dynamic> args = <String, dynamic>{
       'sourceId': sourceId,
@@ -814,7 +814,7 @@ void main() {
     verify(channel.invokeMethod('style#addSource', args)).called(1);
   });
 
-  test('teat addRasterLayer', () async {
+  test('test addRasterLayer', () async {
     String sourceId = 'sourceId';
     String layerId = 'layerId';
     Map<String, dynamic> properties = {};
@@ -841,8 +841,6 @@ void main() {
         sourceLayer: sourceLayer,
         minzoom: minzoom,
         maxzoom: maxzoom);
-
-    print(args);
 
     verify(channel.invokeMethod('rasterLayer#add', args)).called(1);
   });
@@ -959,5 +957,246 @@ void main() {
     };
 
     verify(channel.invokeMethod('style#setStyleString', args)).called(1);
+  });
+
+  test('handleMethodCall infoWindow#onTap', () async {
+    final arguments = <String, dynamic>{
+      'symbol': 'symbolId',
+    };
+
+    nbMapsGlChannel.onInfoWindowTappedPlatform.add((String symbol) {
+      expect(symbol, 'symbolId');
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('infoWindow#onTap', arguments));
+  });
+
+  test('handleMethodCall feature#onTap', () async {
+    String id = 'id';
+    double x = 10.0;
+    double y = 10.0;
+    double lng = -122.4194;
+    double lat = 37.7749;
+
+    final arguments = <String, dynamic>{
+      'id': id,
+      'x': x,
+      'y': y,
+      'lng': lng,
+      'lat': lat,
+    };
+
+    nbMapsGlChannel.onFeatureTappedPlatform.add((Map<String, dynamic> arg) {
+      expect(arg['id'], id);
+      expect(arg['point'], Point<double>(x, y));
+      expect(arg['latLng'], LatLng(lat, lng));
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('feature#onTap', arguments));
+  });
+
+  test('handleMethodCall feature#onDrag', () async {
+    String id = 'id';
+    double x = 10.0;
+    double y = 10.0;
+    double originLat = -122.4194;
+    double originLng = 37.7749;
+
+    final double currentLat = 38.7749;
+    final double currentLng = -125.4194;
+
+    final double deltaLat = 1.0;
+    final double deltaLng = 2.0;
+    final String eventType = 'end';
+
+    Map<String, dynamic> methodArgs = {
+      'id': id,
+      'x': x,
+      'y': y,
+      'originLat': originLat,
+      'originLng': originLng,
+      'currentLat': currentLat,
+      'currentLng': currentLng,
+      'deltaLat': deltaLat,
+      'deltaLng': deltaLng,
+      'eventType': eventType,
+    };
+
+    Map<String, dynamic> callabckArguments = {
+      'id': id,
+      'point': Point<double>(x, y),
+      'origin': LatLng(originLat, originLng),
+      'current': LatLng(currentLat, currentLng),
+      'delta': LatLng(deltaLat, deltaLng),
+      'eventType': eventType,
+    };
+
+    nbMapsGlChannel.onFeatureDraggedPlatform.add((Map<String, dynamic> arg) {
+      expect(arg, callabckArguments);
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('feature#onDrag', methodArgs));
+  });
+
+  test('handleMethodCall throws MissingPluginException for unknown method',
+      () async {
+    const call = MethodCall('unknownMethod');
+
+    expect(() async => await nbMapsGlChannel.handleMethodCall(call),
+        throwsA(isA<MissingPluginException>()));
+  });
+
+  test('handleMethodCall camera#onMoveStarted', () async {
+    bool isCallbackInvoked = false;
+    nbMapsGlChannel.onCameraMoveStartedPlatform.add((_) {
+      isCallbackInvoked = true;
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('camera#onMoveStarted'));
+
+    expect(isCallbackInvoked, true);
+  });
+
+  test('handleMethodCall camera#onMove', () async {
+    Map<String, dynamic> args = <String, dynamic>{
+      'position': <String, dynamic>{
+        'target': [37.7749, -122.4194],
+        'zoom': 15.0,
+        'bearing': 2.0,
+        'tilt': 3.0,
+      },
+    };
+
+    nbMapsGlChannel.onCameraMovePlatform.add((CameraPosition position) {
+      expect(position.target, LatLng(37.7749, -122.4194));
+      expect(position.zoom, 15.0);
+      expect(position.bearing, 2.0);
+      expect(position.tilt, 3.0);
+    });
+    nbMapsGlChannel.handleMethodCall(MethodCall('camera#onMove', args));
+  });
+
+  test('handleMethodCall camera#onIdle', () async {
+    Map<String, dynamic> args = <String, dynamic>{
+      'position': <String, dynamic>{
+        'target': [37.7749, -122.4194],
+        'zoom': 15.0,
+        'bearing': 2.0,
+        'tilt': 3.0,
+      },
+    };
+
+    nbMapsGlChannel.onCameraIdlePlatform.add((CameraPosition? position) {
+      expect(position?.target, LatLng(37.7749, -122.4194));
+      expect(position?.zoom, 15.0);
+      expect(position?.bearing, 2.0);
+      expect(position?.tilt, 3.0);
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('camera#onIdle', args));
+  });
+
+  test('handleMethodCall map#onStyleLoaded', () async {
+    bool isCallbackInvoked = false;
+    nbMapsGlChannel.onMapStyleLoadedPlatform.add((_) {
+      isCallbackInvoked = true;
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('map#onStyleLoaded'));
+
+    expect(isCallbackInvoked, true);
+  });
+
+  test('handleMethodCall map#onMapClick', () async {
+    final point = Point<double>(10.0, 10.0);
+    final latLng = LatLng(37.7749, -122.4194);
+
+    final arguments = <String, dynamic>{
+      'x': point.x,
+      'y': point.y,
+      'lat': latLng.latitude,
+      'lng': latLng.longitude,
+    };
+
+    nbMapsGlChannel.onMapClickPlatform.add((Map<String, dynamic> args) {
+      expect(args['point'], point);
+      expect(args['latLng'], latLng);
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('map#onMapClick', arguments));
+  });
+
+  test('handleMethodCall map#onMapLongClick', () async {
+    final point = Point<double>(10.0, 10.0);
+    final latLng = LatLng(37.7749, -122.4194);
+
+    final arguments = <String, dynamic>{
+      'x': point.x,
+      'y': point.y,
+      'lat': latLng.latitude,
+      'lng': latLng.longitude,
+    };
+
+    nbMapsGlChannel.onMapLongClickPlatform.add((Map<String, dynamic> args) {
+      expect(args['point'], point);
+      expect(args['latLng'], latLng);
+    });
+
+    nbMapsGlChannel
+        .handleMethodCall(MethodCall('map#onMapLongClick', arguments));
+  });
+
+  test('handleMethodCall map#onCameraTrackingChanged', () async {
+    final int trackingMode = 1;
+
+    final arguments = <String, dynamic>{
+      'mode': trackingMode,
+    };
+
+    nbMapsGlChannel.onCameraTrackingChangedPlatform
+        .add((MyLocationTrackingMode mode) {
+      expect(mode, MyLocationTrackingMode.values[trackingMode]);
+    });
+
+    nbMapsGlChannel
+        .handleMethodCall(MethodCall('map#onCameraTrackingChanged', arguments));
+  });
+
+  test('handleMethodCall map#onAttributionClick', () async {
+    bool isCallbackInvoked = false;
+    nbMapsGlChannel.onAttributionClickPlatform.add((_) {
+      isCallbackInvoked = true;
+    });
+
+    nbMapsGlChannel.handleMethodCall(MethodCall('map#onAttributionClick'));
+
+    expect(isCallbackInvoked, true);
+  });
+
+  test('handleMethodCall map#onUserLocationUpdated', () async {
+    final location = <String, dynamic>{
+      'userLocation': {
+        'position': [37.7749, -122.4194],
+        'timestamp': DateTime.now().microsecondsSinceEpoch,
+        'altitude': 10.0,
+        'bearing': 2.0,
+        'horizontalAccuracy': 3.0,
+        'verticalAccuracy': 4.0,
+        'speed': 5.0
+      }
+    };
+
+    nbMapsGlChannel.onUserLocationUpdatedPlatform.add((UserLocation location) {
+      expect(location.position.latitude, 37.7749);
+      expect(location.position.longitude, -122.4194);
+      expect(location.altitude, 10.0);
+      expect(location.bearing, 2.0);
+      expect(location.horizontalAccuracy, 3.0);
+      expect(location.verticalAccuracy, 4.0);
+      expect(location.speed, 5.0);
+    });
+
+    nbMapsGlChannel
+        .handleMethodCall(MethodCall('map#onUserLocationUpdated', location));
   });
 }
