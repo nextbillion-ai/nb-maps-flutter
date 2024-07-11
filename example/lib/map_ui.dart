@@ -1,10 +1,7 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
-import 'main.dart';
 import 'page.dart';
 
 final LatLngBounds sydneyBounds = LatLngBounds(
@@ -347,9 +344,6 @@ class MapUiBodyState extends State<MapUiBody> {
         print("Filter $_featureQueryFilter");
         List features = await mapController!
             .queryRenderedFeatures(point, ["landuse"], _featureQueryFilter);
-        if (features == null) {
-          return;
-        }
         print('# features: ${features.length}');
         _clearFill();
         if (features.isEmpty && _featureQueryFilter != null) {
@@ -362,11 +356,6 @@ class MapUiBodyState extends State<MapUiBody> {
       onMapLongClick: (point, latLng) async {
         print(
             "Map long press: ${point.x},${point.y}   ${latLng.latitude}/${latLng.longitude}");
-        Point? convertedPoint = await mapController!.toScreenLocation(latLng);
-        if (convertedPoint == null) {
-          return;
-        }
-        LatLng? convertedLatLng = await mapController!.toLatLng(point);
 
         double? metersPerPixel =
             await mapController!.getMetersPerPixelAtLatitude(latLng.latitude);

@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
-import 'main.dart';
 import 'page.dart';
 
 class TakeSnapPage extends ExamplePage {

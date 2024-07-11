@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:test/test.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
