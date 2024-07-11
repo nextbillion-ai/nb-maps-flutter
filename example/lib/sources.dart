@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
-import 'main.dart';
 import 'page.dart';
 
 class StyleInfo {
@@ -351,7 +350,7 @@ class FullMapState extends State<FullMap> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Current source ${styleInfo.name}",
-                    textScaleFactor: 1.4,
+                    textScaler: TextScaler.linear(1.4),
                   ),
                 ),
               ),

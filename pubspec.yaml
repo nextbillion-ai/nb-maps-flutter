@@ -7,6 +7,7 @@ dependencies:
   flutter:
     sdk: flutter
   collection: ^1.15.0
+  nb_kits_flutter: ^0.0.1
 
 dev_dependencies:
   flutter_test:
