@@ -1,14 +1,11 @@
 import 'dart:async'; // ignore: unnecessary_import
 import 'dart:core';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
-
-import 'main.dart';
 import 'page.dart';
 
 class PlaceSymbolPage extends ExamplePage {

@@ -10,7 +10,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/rendering.dart';
-export 'package:nb_kits_flutter/nb_kits_flutter.dart';
 
 part 'src/controller.dart';
 part 'src/nb_map.dart';

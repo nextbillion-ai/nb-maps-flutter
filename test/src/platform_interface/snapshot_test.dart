@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 
