@@ -4,7 +4,8 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
   late MethodChannel _channel;
   static bool useHybridComposition = false;
 
-  Future<dynamic> _handleMethodCall(MethodCall call) async {
+  @visibleForTesting
+  Future<dynamic> handleMethodCall(MethodCall call) async {
     switch (call.method) {
       case 'infoWindow#onTap':
         final String? symbolId = call.arguments['symbol'];
@@ -131,8 +132,14 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
   @override
   Future<void> initPlatform(int id) async {
     _channel = MethodChannel('plugins.flutter.io/nbmaps_maps_$id');
-    _channel.setMethodCallHandler(_handleMethodCall);
+    _channel.setMethodCallHandler(handleMethodCall);
     await _channel.invokeMethod('map#waitForMap');
+  }
+
+  @visibleForTesting
+  void setTestingMethodChanenl(MethodChannel channel) {
+    _channel = channel;
+    _channel.setMethodCallHandler(handleMethodCall);
   }
 
   @override
@@ -688,6 +695,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addRasterLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
@@ -706,6 +714,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addHillshadeLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
@@ -724,6 +733,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
     });
   }
 
+  //sourceLayer is unused
   @override
   Future<void> addHeatmapLayer(
       String sourceId, String layerId, Map<String, dynamic> properties,
