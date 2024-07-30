@@ -41,7 +41,6 @@ class OfflinePackDownloader {
     }
 
     deinit {
-        print("Removing offline pack notification observers")
         NotificationCenter.default.removeObserver(self)
     }
 
@@ -111,7 +110,6 @@ class OfflinePackDownloader {
         )
         // Check if downloading is complete
         if pack.state == .complete {
-            print("Region downloaded successfully")
             // set download state to inactive
             // This can be called multiple times but result can only be called once. We use this
             // check to ensure that
@@ -123,7 +121,6 @@ class OfflinePackDownloader {
                 OfflineManagerUtils.releaseDownloader(id: region.id)
             }
         } else {
-            print("Region download progress \(downloadProgress)")
             channelHandler.onProgress(progress: downloadProgress)
         }
     }
@@ -132,7 +129,6 @@ class OfflinePackDownloader {
         guard let pack = notification.object as? NGLOfflinePack,
               verifyPack(pack: pack) else { return }
         let error = notification.userInfo?[NGLOfflinePackUserInfoKey.error] as? NSError
-        print("Pack download error: \(String(describing: error?.localizedDescription))")
         // set download state to inactive
         isCompleted = true
         channelHandler.onError(
@@ -155,7 +151,6 @@ class OfflinePackDownloader {
               verifyPack(pack: pack) else { return }
         let maximumCount = (notification.userInfo?[NGLOfflinePackUserInfoKey.maximumCount]
             as AnyObject).uint64Value ?? 0
-        print("NbMaps tile count limit exceeded: \(maximumCount)")
         // set download state to inactive
         isCompleted = true
         channelHandler.onError(

@@ -106,9 +106,6 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                       let defintion = OfflineRegionDefinition.fromDictionary(definitionDictionary),
                       let channelName = args["channelName"] as? String
                 else {
-                    print(
-                        "downloadOfflineRegion unexpected arguments: \(String(describing: methodCall.arguments))"
-                    )
                     result(nil)
                     return
                 }

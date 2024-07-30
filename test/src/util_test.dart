@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:nb_maps_flutter/nb_maps_flutter.dart';
 import 'package:test/test.dart';
 
@@ -27,5 +29,19 @@ void main() {
 
     // Assert
     expect(result.length, equals(length));
+  });
+
+  test('prints message in debug mode', () {
+    var logOutput = <String>[];
+
+    var spec = ZoneSpecification(print: (self, parent, zone, message) {
+      logOutput.add(message);
+    });
+
+    Zone.current.fork(specification: spec).run(() {
+      debugLog('Test message');
+    });
+
+    expect(logOutput, contains('Test message'));
   });
 }

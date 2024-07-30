@@ -1643,7 +1643,6 @@ class NextbillionMapController: NSObject, FlutterPlatformView, NGLMapViewDelegat
             let source = NGLShapeSource(identifier: sourceId, shape: parsed, options: [:])
             addedShapesByLayer[sourceId] = parsed
             mapView.style?.addSource(source)
-            print(source)
         } catch {}
     }
 

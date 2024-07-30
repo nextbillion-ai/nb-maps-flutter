@@ -41,13 +41,13 @@ final List<ExamplePage> _allPages = <ExamplePage>[
   PlaceCirclePage(),
   PlaceFillPage(),
   ScrollingMapPage(),
-  OfflineRegionsPage(),
+  // OfflineRegionsPage(),
   AnnotationOrderPage(),
   CustomMarkerPage(),
   BatchAddPage(),
   TakeSnapPage(),
   ClickAnnotationPage(),
-  Sources(),
+  // Sources(),
   TrackCurrentLocationPage()
 ];
 
