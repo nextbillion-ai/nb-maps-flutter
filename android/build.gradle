@@ -1,5 +1,5 @@
 group 'ai.nextbillion.maps_flutter'
-version '0.3.5'
+version '1.1.0'
 
 buildscript {
     repositories {
@@ -16,13 +16,16 @@ buildscript {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 34
     ndkVersion "20.1.5948944"
+    namespace 'ai.nextbillion.maps_flutter'
 
     defaultConfig {
         minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        buildConfigField "String", "GIT_REVISION_SHORT", String.format("\"%s\"", getGitRevision())
+        buildConfigField "String", "NBMAP_FLUTTER_VERSION", String.format("\"%s\"", project.version)
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -32,11 +35,17 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     dependencies {
-        implementation 'ai.nextbillion:nb-maps-android:1.1.3'
+        implementation 'ai.nextbillion:nb-maps-android:1.1.5'
         implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     }
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+}
+def static getGitRevision() {
+    def cmd = "git rev-parse --short HEAD"
+    def process = cmd.execute()
+    def ref = process.text.trim()
+    return ref
 }

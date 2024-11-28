@@ -25,6 +25,14 @@ public class SwiftNbMapsFlutterPlugin: NSObject, FlutterPlugin {
                     if let token = args["accessKey"] as? String? {
                         NGLAccountManager.accessToken = token
                     }
+                    
+                    let libraryBundle = Bundle(for: SwiftNbMapsFlutterPlugin.self)
+                   
+                    let version = libraryBundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "Unknown"
+                    let buildNumber = libraryBundle.object(forInfoDictionaryKey: "CFBundleVersion") ?? "Unknown"
+                 
+                    let crossPlatformInfo: String = "Flutter-\(version)-\(buildNumber)"
+                    NGLAccountManager.crossPlatformInfo = crossPlatformInfo
                 }
                 result(nil)
             case "nextbillion/get_access_key":

@@ -16,7 +16,7 @@ dependencies:
   path_provider: ^2.0.0
   http: ^0.13.0
   collection: ^1.0.0
-  device_info_plus: ^3.2.2
+  device_info_plus: ^10.1.2
   nb_maps_flutter:
     path: ../
   permission_handler: ^11.0.1

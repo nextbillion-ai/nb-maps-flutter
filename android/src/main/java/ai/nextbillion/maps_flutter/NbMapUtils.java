@@ -68,4 +68,10 @@ abstract class NbMapUtils {
         return Nextbillion.getNBId();
     }
 
+    static void setCrossPlatformInfo() {
+        String crossPlatformName = String.format("Flutter-%s-%s", BuildConfig.NBMAP_FLUTTER_VERSION, BuildConfig.GIT_REVISION_SHORT);
+        Nextbillion.setCrossPlatformInfo(crossPlatformName);
+    }
+
+
 }

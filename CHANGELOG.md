@@ -1,3 +1,16 @@
+## v1.1.0, Nov 28, 2024
+* Update Android NB Maps SDK to 1.1.5 
+* Adapt to Android Gradle Plugin 8.0
+* Upgrade the compile SDK version to 34 to support Flutter SDK 3.24.0+
+
+## v1.0.0, Sept 5, 2024
+* Pinned `NextBillionMap` dependency to version `1.1.5`.
+
+## v0.4.3, Sep 4, 2024
+* Update Android NB Maps SDK to 1.1.4 and Update iOS NB Maps framework to 1.1.5
+  * Modify user agent for Android and iOS
+  * Add cross-platform info into the native user agent
+
 ## v0.4.2, June 6, 2024
 * Update Android NB Maps SDK to 1.1.3 and Update iOS NB Maps framework to 1.1.4
 

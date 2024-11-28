@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import ai.nextbillion.maps.Nextbillion;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -27,6 +28,7 @@ public class NextBillionMethodHandler implements MethodChannel.MethodCallHandler
             case "nextbillion/init_nextbillion":
                 String accessToken = call.argument("accessKey");
                 NbMapUtils.getNextbillion(context, accessToken);
+                NbMapUtils.setCrossPlatformInfo();
                 result.success(null);
                 break;
             case "nextbillion/get_access_key":
