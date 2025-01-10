@@ -769,7 +769,7 @@ class MethodChannelNbMapsGl extends NbMapsGlPlatform {
   @override
   Future<String> takeSnapshot(SnapshotOptions snapshotOptions) async {
     try {
-      debugPrint("${snapshotOptions.toJson()}");
+      debugLog("${snapshotOptions.toJson()}");
       var uri = await _channel.invokeMethod(
           'snapshot#takeSnapshot', snapshotOptions.toJson());
       return uri;

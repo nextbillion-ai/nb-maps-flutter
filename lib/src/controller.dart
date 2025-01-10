@@ -283,7 +283,8 @@ class NextbillionMapController extends ChangeNotifier {
 
   /// Starts an animated change of the map camera position.
   ///
-  /// [duration] is the amount of time, that the transition animation should take.
+  /// [duration] is the amount of time, that the transition animation should take. This must be strictly
+  /// positive, otherwise an IllegalArgumentException will be thrown.
   ///
   /// The returned [Future] completes after the change has been started on the
   /// platform side.
@@ -291,6 +292,7 @@ class NextbillionMapController extends ChangeNotifier {
   /// Note: this currently always returns immediately with a value of null on iOS
   Future<bool?> animateCamera(CameraUpdate cameraUpdate,
       {Duration? duration}) async {
+    assert(duration == null || duration > Duration.zero, 'Duration must be greater than zero');
     if (_disposed) {
       return false;
     }
